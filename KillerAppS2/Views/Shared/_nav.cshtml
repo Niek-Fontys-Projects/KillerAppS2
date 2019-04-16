@@ -1,0 +1,74 @@
+﻿<style>
+    html, body {
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    ._nav {
+        font-size: 30px;
+        width: 100%;
+        height: 42px;
+        background-color: #0094ff;
+    }
+
+        ._nav a {
+            height: 100%;
+            width: 200px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            display: block;
+            float: left;
+        }
+
+            ._nav a:hover {
+                background-color: #00ffff;
+            }
+
+    ._searchbar {
+        float: right;
+    }
+
+    ._account {
+        color: white;
+        text-align: center;
+        height: 100%;
+        width: 150px;
+        float: right;
+    }
+
+        ._account:hover {
+            background-color: #0026ff;
+        }
+
+    ._nav input[type=text] {
+        padding: 6px;
+        margin-top: 8px;
+        border: none;
+    }
+
+    ._navbar ._searchbar button {
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+<div class="_nav">
+    <a href="#home">RiddleForum</a>
+    <a href="#Riddles">Riddles</a>
+    <a href="#Catagories">Catagories</a>
+    <a href="#Help">Help</a>
+    <div class="_account">
+        Account
+    </div>
+    <div class="_searchbar">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search">Search</i></button>
+    </div>
+</div>
