@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace DataAccess
+namespace ModelLayer.General_Interfaces
 {
     public interface IMessage
     {

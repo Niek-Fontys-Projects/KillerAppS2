@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace DataAccess
+namespace ModelLayer.General_Interfaces
 {
-    interface IRiddle
+    public interface IRiddle
     {
         string UserName { get; }
         string RiddleName { get; }

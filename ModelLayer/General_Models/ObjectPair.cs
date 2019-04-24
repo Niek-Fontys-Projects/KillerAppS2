@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ModelLayer.General_Interfaces;
+using System;
 
-namespace DataAccess
+namespace ModelLayer.General_Models
 {
     public class ObjectPair<T1, T2> : IObjectPair<T1, T2>
     {

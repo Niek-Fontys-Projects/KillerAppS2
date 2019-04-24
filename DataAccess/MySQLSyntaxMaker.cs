@@ -1,14 +1,15 @@
-﻿using System;
+﻿using ModelLayer.General_Interfaces;
+using ModelLayer.General_Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DataAccess
 {
     internal class MySQLSyntaxMaker : ISyntaxMaker
     {
         private IEnumerable<IObjectPair<Type, string>> insertPreFixes;
-        private string comma = ",";
+        private readonly string comma = ",";
 
         public MySQLSyntaxMaker()
         {
@@ -39,6 +40,19 @@ namespace DataAccess
         ///////////////////////////////////////////>>>INSERTS<<<///////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        private string Insert(IEnumerable<ICategory> _categories, string _riddleName)
+        {
+            string syntax = String.Empty;
+            foreach(ICategory category in _categories)
+            {
+                syntax += "INSERT INTO `riddlecatagories`(`Riddle`, `Catagory`) VALUES (";
+                syntax += SelectRiddleID(_riddleName);
+                syntax += comma;
+                syntax += SelectCategoryID(category.CategoryName);
+            }
+            return syntax + ");";
+        }
+
         public string Insert(IAnnouncement _announcement)
         {
             string syntax = "(";
@@ -66,7 +80,7 @@ namespace DataAccess
             string syntax = "(";
             syntax += SelectUserID(_rating.UserName);
             syntax += comma;
-            syntax += "X";
+            syntax += SelectRiddleID(_rating.RiddleName);
             syntax += comma;
             syntax += _rating.Score;
             return syntax + ")";
@@ -77,7 +91,7 @@ namespace DataAccess
             string syntax = "(";
             syntax += SelectUserID(_message.UserName);
             syntax += comma;
-            syntax += "X";
+            syntax += SelectRiddleID(_message.RiddleName);
             syntax += comma;
             syntax += StringSyntax(_message.Message);
             return syntax + ")";
@@ -88,7 +102,7 @@ namespace DataAccess
             string syntax = "(";
             syntax += SelectUserID(_answerSuggestion.UserName);
             syntax += comma;
-            syntax += "X";
+            syntax += SelectRiddleID(_answerSuggestion.RiddleName);
             syntax += comma;
             syntax += StringSyntax(_answerSuggestion.Answer);
             return syntax + ")";
@@ -104,6 +118,7 @@ namespace DataAccess
             syntax += StringSyntax(_riddle.RiddleContent);
             syntax += comma;
             syntax += StringSyntax(_riddle.Answer);
+            syntax += ";";
             syntax += "X";
             return syntax + ")";
         }
@@ -111,12 +126,27 @@ namespace DataAccess
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////>>>SELECTS<<<///////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
         private string SelectUserID(string _userName)
         {
             string syntax = "(";
             syntax += "SELECT USER.ID FROM `user` WHERE user.UserName = ";
             syntax += StringSyntax(_userName);
+            return syntax + ")";
+        }
+
+        private string SelectRiddleID(string _riddleName)
+        {
+            string syntax = "(";
+            syntax += "SELECT Riddle.ID FROM `riddle` WHERE Riddle.RiddleName = ";
+            syntax += StringSyntax(_riddleName);
+            return syntax + ")";
+        }
+
+        private string SelectCategoryID(string _categoryName)
+        {
+            string syntax = "(SELECT `ID` FROM `category` WHERE Category.Catagory = ";
+            syntax += StringSyntax(_categoryName);
             return syntax + ")";
         }
     }
