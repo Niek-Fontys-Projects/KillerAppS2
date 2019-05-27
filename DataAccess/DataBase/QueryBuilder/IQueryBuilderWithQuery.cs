@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess
+namespace DataLayer.DataBase.QueryBuilder
 {
     public interface IQueryBuilderWithQuery : IQueryBuilder
     {

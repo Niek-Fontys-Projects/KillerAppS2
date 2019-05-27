@@ -1,4 +1,5 @@
-﻿
+﻿@model ServiceLayer.InputViewModels.LogInModel
+
 @{
     Layout = null;
 }
@@ -13,8 +14,21 @@
     </style>
 </head>
 <body>
-    <div class="_navbar">@Html.Partial("../Shared/_nav")</div>
-    <div class="_anouncementsboard">@Html.Partial("../Shared/_announcements")</div>
-    <div class="_catagories">@Html.Partial("../Shared/_categories")</div>
+    @*<div class="_navbar">@Html.Partial("../Shared/_nav")</div>
+        <div class="_anouncementsboard">@Html.Partial("../Shared/_announcements")</div>
+        <div class="_catagories">@Html.Partial("../Shared/_categories")</div>*@
+    <div class="loginContainer">
+        <h2>Login</h2>
+        <form method="post">
+            <input asp-for="Username" class="form-control loginInput">
+            <input asp-for="Password" class="form-control loginInput">
+            @if (TempData["FailedLoginAttempt"] != null)
+            {
+                <div class="errorMessage">@TempData["FailedLoginAttempt"]</div>
+            }
+            <div class="forgetLinks"><a asp-controller="Home" asp-action="LogIn">Reset password / username</a></div>
+            <div><input type="submit" value="LogIn" class="btn loginButton" /></div>
+        </form>
+    </div>
 </body>
 </html>

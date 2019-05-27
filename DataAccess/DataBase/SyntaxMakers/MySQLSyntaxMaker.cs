@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DataAccess
+namespace DataLayer.DataBase.SyntaxMaker
 {
     internal class MySQLSyntaxMaker : ISyntaxMaker
     {
@@ -43,7 +43,7 @@ namespace DataAccess
         private string Insert(IEnumerable<ICategory> _categories, string _riddleName)
         {
             string syntax = String.Empty;
-            foreach(ICategory category in _categories)
+            foreach (ICategory category in _categories)
             {
                 syntax += "INSERT INTO `riddlecatagories`(`Riddle`, `Catagory`) VALUES (";
                 syntax += SelectRiddleID(_riddleName);
@@ -118,8 +118,8 @@ namespace DataAccess
             syntax += StringSyntax(_riddle.RiddleContent);
             syntax += comma;
             syntax += StringSyntax(_riddle.Answer);
-            syntax += ";";
-            syntax += "X";
+            //syntax += ";";
+            //syntax += "X";
             return syntax + ")";
         }
 
@@ -147,6 +147,17 @@ namespace DataAccess
         {
             string syntax = "(SELECT `ID` FROM `category` WHERE Category.Catagory = ";
             syntax += StringSyntax(_categoryName);
+            return syntax + ")";
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////>>>STORED-PROCEDURES<<<//////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public string GetUserByUserName(string _userName)
+        {
+            string syntax = "Call GetUserByUserName(";
+            syntax += StringSyntax(_userName);
             return syntax + ")";
         }
     }

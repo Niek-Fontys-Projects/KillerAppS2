@@ -1,16 +1,19 @@
-﻿using System;
+﻿using DataLayer.DataBase.SyntaxMaker;
+using ModelLayer.General_Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess
+namespace DataLayer.DataBase.QueryBuilder
 {
     public class QueryBuilder : IQueryBuilderWithQuery
     {
         private string query;
         private ISyntaxMaker syntaxMaker;
 
-        public QueryBuilder()
+        public QueryBuilder(ISyntaxMaker _syntaxMaker)
         {
+            syntaxMaker = _syntaxMaker;
             query = String.Empty;
         }
 
@@ -46,6 +49,11 @@ namespace DataAccess
         {
             syntaxMaker.InsertPreFix(Query, typeof(IMessage));
             query += syntaxMaker.Insert(_message);
+        }
+
+        public void GetUserByUserName(string _userName)
+        {
+            query += syntaxMaker.GetUserByUserName(_userName);
         }
     }
 }
