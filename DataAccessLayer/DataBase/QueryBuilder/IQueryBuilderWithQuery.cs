@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataLayer.DataBase.QueryBuilder
 {
-    public interface IQueryBuilderWithQuery : IQueryBuilder
+    internal interface IQueryBuilderWithQuery : IQueryBuilder
     {
         string Query { get; }
     }

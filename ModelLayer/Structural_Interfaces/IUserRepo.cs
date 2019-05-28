@@ -5,8 +5,9 @@ using System.Text;
 
 namespace ModelLayer.Structural_Interfaces
 {
-    public interface ILogInRepo
+    public interface IUserRepo
     {
         IUserWithPassWord GetUserByUserName(string _userName);
+        void AddUser(string _userName, string _mail, string _passWord, string _PassWordhash);
     }
 }

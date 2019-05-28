@@ -6,19 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Handlers;
 using ServiceLayer.InputViewModels;
 
-namespace KillerAppS2.Controllers
+namespace PresentationLayer.Controllers
 {
-    public class HomeController : Controller
+    public class UserController : Controller
     {
         private UserHandler userHandler;
 
-        public HomeController()
+        public UserController(UserHandler _userHandler)
         {
-            userHandler = new UserHandler();
+            userHandler = _userHandler;
         }
 
         [HttpPost]
-        public IActionResult Index(LogInModel _lim)
+        public IActionResult LogIn(LogInModel _lim)
         {
             if (ModelState.IsValid)
             {
@@ -27,9 +27,11 @@ namespace KillerAppS2.Controllers
                     return View();
                 }
             }
-            return View("Index");
+            return View();
         }
-        public IActionResult Index()
+
+        [HttpGet]
+        public IActionResult LogIn()
         {
             return View();
         }

@@ -1,4 +1,6 @@
 ﻿using DataLayer.DataBase.QueryBuilder;
+using DataLayer.DataBase.SyntaxMaker;
+using DataLayer.DataLogger;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -6,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DataLayer.DataBase
 {
@@ -14,12 +17,14 @@ namespace DataLayer.DataBase
         private MySqlConnection connection;
         private MySqlDataAdapter adapter;
         private IQueryBuilderWithQuery queryBuilder;
+        private IDataBaseErrorLogger errorLogger;
 
-        public DataBase(IQueryBuilderWithQuery _queryBuilder, string _connString)
+        public DataBase(string _connString, ISyntaxMaker _syntaxMaker)
         {//"server=localhost; database=s2riddle#2; Uid=root; password=;"
             connection = new MySqlConnection(_connString);
-            queryBuilder = _queryBuilder;
+            queryBuilder = new QueryBuilder.QueryBuilder(_syntaxMaker);
             adapter = new MySqlDataAdapter();
+            errorLogger = new JSonLogger();
         }
 
         public IQueryBuilder QueryBuilder
@@ -38,8 +43,11 @@ namespace DataLayer.DataBase
             }
             catch (Exception e)
             {
-                e.ToString();
-                //whoops
+                Task.Run(() => errorLogger.DataBaseErrorLogger(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
@@ -55,8 +63,7 @@ namespace DataLayer.DataBase
             }
             catch(Exception e)
             {
-                e.ToString();
-                //whoops
+                Task.Run(() => errorLogger.DataBaseErrorLogger(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
             }
             finally
             {
