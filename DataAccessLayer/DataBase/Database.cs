@@ -20,7 +20,7 @@ namespace DataLayer.DataBase
         private IDataBaseErrorLogger errorLogger;
 
         public DataBase(string _connString, ISyntaxMaker _syntaxMaker)
-        {//"server=localhost; database=s2riddle#2; Uid=root; password=;"
+        {//"server=localhost; database=s2riddle#3; Uid=root; password=;"
             connection = new MySqlConnection(_connString);
             queryBuilder = new QueryBuilder.QueryBuilder(_syntaxMaker);
             adapter = new MySqlDataAdapter();

@@ -5,8 +5,14 @@ using System.Text;
 
 namespace ModelLayer.Structural_Interfaces
 {
+    public enum LogInResult
+    {
+        Good,
+        UserName,
+        PassWord
+    }
     public interface ILogInValidator
     {
-        bool ValidateUser(string _userName, string _passWord, IUserWithPassWord _user);
+        LogInResult ValidateUser(string _userName, string _passWord, IUserWithPassWord _user);
     }
 }
