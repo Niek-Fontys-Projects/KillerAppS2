@@ -7,6 +7,7 @@ namespace ModelLayer.General_Models
 {
     public class User : IUserWithPassWord
     {
+        private string userID;
         private string userName;
         private string eMail;
         private string passWord;
@@ -18,6 +19,12 @@ namespace ModelLayer.General_Models
             eMail = string.Empty;
             passWord = string.Empty;
             passWordhash = string.Empty;
+        }
+
+        public string UserID
+        {
+            get { return userID; }
+            set { userID = value; }
         }
 
         public string UserName

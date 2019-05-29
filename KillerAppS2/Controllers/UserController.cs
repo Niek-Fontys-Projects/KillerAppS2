@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Handlers;
 using ServiceLayer.InputViewModels;
 
@@ -27,8 +28,11 @@ namespace PresentationLayer.Controllers
         {
             if (ModelState.IsValid)
             {
-                userHandler.ValidateLoginAttempt(_lim);
+                var resultPair = userHandler.ValidateLoginAttempt(_lim);
+                if (resultPair.Object1 == ModelLayer.Structural_Interfaces.LogInResult.Good)
                 {
+                    HttpContext.Session.SetString("User", resultPair.Object2.UserID);
+                    HttpContext.Session.SetString("UserName", resultPair.Object2.UserName);
                     return View();
                 }
             }

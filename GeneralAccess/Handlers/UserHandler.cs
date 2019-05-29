@@ -7,6 +7,7 @@ using LogicLayer.LogInValidator;
 using LogicLayer.Hasher;
 using LogicLayer.MailSender;
 using System.Threading.Tasks;
+using ModelLayer.General_Models;
 
 namespace ServiceLayer.Handlers
 {
@@ -25,10 +26,10 @@ namespace ServiceLayer.Handlers
             mailSender = new SMTPSender();
         }
 
-        public LogInResult ValidateLoginAttempt(LogInModel _lim)
+        public IObjectPair<LogInResult, IUser> ValidateLoginAttempt(LogInModel _lim)
         {
             IUserWithPassWord user = userRepo.GetUserByUserName(_lim.Username);
-            return userValidator.ValidateUser(_lim.Username, hasher.Hash(_lim.Password, user.PassWordHash), user);
+            return new ObjectPair<LogInResult, IUser>(userValidator.ValidateUser(_lim.Username, hasher.Hash(_lim.Password, user.PassWordHash), user), user);
         }
 
         public bool Adduser(AddUserModel _aum)
