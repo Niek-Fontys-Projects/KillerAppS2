@@ -15,7 +15,6 @@ namespace DataLayer.DataBase.SyntaxMaker
         {
             insertPreFixes = new List<IObjectPair<Type, string>>() {
             new ObjectPair<Type, string>(typeof(IAnnouncement), "INSERT INTO `announcements` (`Topic`, `Content`) VALUES "),
-            new ObjectPair<Type, string>(typeof(IUserWithPassWord), "INSERT INTO `user`(`UserName`, `EMail`, `PassWord`, `PassWordHash`) VALUES "),
             new ObjectPair<Type, string>(typeof(IRating), "INSERT INTO `rating`(`User`, `Riddle`, `Score`) VALUES "),
             new ObjectPair<Type, string>(typeof(IMessage), "INSERT INTO `message`(`User`, `Riddle`, `Message`) VALUES "),
             new ObjectPair<Type, string>(typeof(IAnswerSuggestion), "INSERT INTO `suggestedanswer`(`User`, `Riddle`, `Answer`) VALUES "),

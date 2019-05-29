@@ -5,6 +5,8 @@ using ServiceLayer.InputViewModels;
 using LogicLayer;
 using LogicLayer.LogInValidator;
 using LogicLayer.Hasher;
+using LogicLayer.MailSender;
+using System.Threading.Tasks;
 
 namespace ServiceLayer.Handlers
 {
@@ -13,14 +15,14 @@ namespace ServiceLayer.Handlers
         private readonly IUserValidator userValidator;
         private readonly IUserRepo userRepo;
         private readonly ISaltHasher hasher;
+        private readonly IMailSender mailSender;
 
-        public UserHandler()//ILogInValidator _logInValidator, ILogInRepo _logInRepo)
+        public UserHandler()
         {
-            //logInValidator = _logInValidator;
-            //logInRepo = _logInRepo;
             userValidator = new Validator();
             userRepo = new UserRepository();
             hasher = new SaltHasher();
+            mailSender = new SMTPSender();
         }
 
         public LogInResult ValidateLoginAttempt(LogInModel _lim)
@@ -29,14 +31,14 @@ namespace ServiceLayer.Handlers
             return userValidator.ValidateUser(_lim.Username, hasher.Hash(_lim.Password, user.PassWordHash), user);
         }
 
-        public void Adduser(string _userName, string _eMail, string _passWord)
+        public bool Adduser(AddUserModel _aum)
         {
-            userValidator.ValidateEMailAddress(_eMail);
-
-            //verify email
-            IObjectPair<string, string> hashAndSalt = hasher.HashNewSalt(_passWord);
-            //wait for verification
-            userRepo.AddUser(_userName, _eMail, hashAndSalt.Object1, hashAndSalt.Object2);
+            if (!userValidator.ValidateEMailAddress(_aum.Email)) { return false; }
+            IObjectPair<string, string> hashAndSalt = hasher.HashNewSalt(_aum.Password);
+            if(!userRepo.AddUser(_aum.Username, _aum.Email, hashAndSalt.Object1, hashAndSalt.Object2)) { return false; }
+            mailSender.SetSubject("Welcome to RiddleForm"); mailSender.SetContent("Your Account for RiddleForm has been created");
+            mailSender.AddReceiver(_aum.Email); Task.Run(() => mailSender.SendMail());
+            return true;
         }
     }
 }

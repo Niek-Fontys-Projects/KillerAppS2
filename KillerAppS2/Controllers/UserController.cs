@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Handlers;
 using ServiceLayer.InputViewModels;
 
@@ -17,12 +13,21 @@ namespace PresentationLayer.Controllers
             userHandler = _userHandler;
         }
 
+        public IActionResult AddUser(AddUserModel _aum)
+        {
+            if (ModelState.IsValid)
+            {
+                userHandler.Adduser(_aum);
+            }
+            return View();
+        }
+
         [HttpPost]
         public IActionResult LogIn(LogInModel _lim)
         {
             if (ModelState.IsValid)
             {
-                if (userHandler.ValidateLoginAttempt(_lim))
+                userHandler.ValidateLoginAttempt(_lim);
                 {
                     return View();
                 }

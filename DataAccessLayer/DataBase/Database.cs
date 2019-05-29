@@ -5,24 +5,22 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataLayer.DataBase
 {
-    public class DataBase
+    public class DataBase : IDataBase
     {
         private MySqlConnection connection;
         private MySqlDataAdapter adapter;
         private IQueryBuilderWithQuery queryBuilder;
         private IDataBaseErrorLogger errorLogger;
 
-        public DataBase(string _connString, ISyntaxMaker _syntaxMaker)
-        {//"server=localhost; database=s2riddle#3; Uid=root; password=;"
-            connection = new MySqlConnection(_connString);
-            queryBuilder = new QueryBuilder.QueryBuilder(_syntaxMaker);
+        public DataBase()
+        {
+            connection = new MySqlConnection("server=localhost; database=s2riddle#3; Uid=root; password=;");
+            queryBuilder = new QueryBuilder.QueryBuilder(new MySQLSyntaxMaker());
             adapter = new MySqlDataAdapter();
             errorLogger = new JSonLogger();
         }
@@ -32,7 +30,7 @@ namespace DataLayer.DataBase
             get { return queryBuilder; }
         }
 
-        public void ExecuteInsertQuery()
+        public bool ExecuteInsertQuery()
         {
             try
             {
@@ -44,11 +42,14 @@ namespace DataLayer.DataBase
             catch (Exception e)
             {
                 Task.Run(() => errorLogger.DataBaseErrorLogger(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
+                Type x = e.GetType();
+                return false;
             }
             finally
             {
                 connection.Close();
             }
+            return true;
         }
 
         public IEnumerable<T> ExecuteStoredProcedure<T>(Type _instanciatedObjectType)
@@ -61,7 +62,7 @@ namespace DataLayer.DataBase
                 connection.Open();
                 adapter.Fill(table);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Task.Run(() => errorLogger.DataBaseErrorLogger(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
             }
@@ -69,12 +70,12 @@ namespace DataLayer.DataBase
             {
                 connection.Close();
             }
-            foreach(DataRow row in table.Rows)
+            foreach (DataRow row in table.Rows)
             {
                 T newObject = (T)Activator.CreateInstance(_instanciatedObjectType);
                 PropertyInfo[] properties = newObject.GetType().GetProperties();
                 object[] values = row.ItemArray;
-                for(int i = 0; i < values.Length; i++)
+                for (int i = 0; i < values.Length; i++)
                 {
                     properties[i].SetValue(newObject, values[i]);
                 }

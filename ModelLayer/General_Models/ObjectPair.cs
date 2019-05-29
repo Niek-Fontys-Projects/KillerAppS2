@@ -1,5 +1,4 @@
 ﻿using ModelLayer.General_Interfaces;
-using System;
 
 namespace ModelLayer.General_Models
 {
@@ -13,8 +12,14 @@ namespace ModelLayer.General_Models
             object1 = _object1;
             object2 = _object2;
         }
-        public T1 Object1 => throw new NotImplementedException();
+        public T1 Object1
+        {
+            get { return object1; }
+        }
 
-        public T2 Object2 => throw new NotImplementedException();
+        public T2 Object2
+        {
+            get { return object2; }
+        }
     }
 }

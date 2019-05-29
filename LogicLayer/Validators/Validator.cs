@@ -1,9 +1,6 @@
 ﻿using ModelLayer.General_Interfaces;
 using ModelLayer.Structural_Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Net.Mail;
-using System.Text;
 
 namespace LogicLayer.LogInValidator
 {
