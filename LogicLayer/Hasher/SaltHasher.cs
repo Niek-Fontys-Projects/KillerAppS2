@@ -14,26 +14,21 @@ namespace LogicLayer.Hasher
 
         }
 
-        public IObjectPair<string, string> HashNewSalt(string _passWord) // nieuw wachtwoord hashen
+        public IObjectPair<string, string> HashNewSalt(string _passWord)
         {
-            string salt = GenerateRandomSalt(); // maak een random salt aan
+            RNGCryptoServiceProvider rngCryptoServiceProvider = new RNGCryptoServiceProvider();
+            byte[] randomBytes = new byte[64];
+            rngCryptoServiceProvider.GetBytes(randomBytes);
+            string salt = Convert.ToBase64String(randomBytes);
             return new ObjectPair<string, string>(Hash(_passWord, salt), salt);
         }
 
-        public string Hash(string _passWord, string _salt) // ingevulde wachtwoord checken
+        public string Hash(string _passWord, string _salt)
         {
             string total = _passWord + _salt; 
             byte[] textData = System.Text.Encoding.UTF8.GetBytes(total); 
             byte[] hash = SHA256.Create().ComputeHash(textData);
             return BitConverter.ToString(hash);
-        }
-
-        private string GenerateRandomSalt()
-        {
-            RNGCryptoServiceProvider rngCryptoServiceProvider = new RNGCryptoServiceProvider(); // aanmaken van random bytes
-            byte[] randomBytes = new byte[64];
-            rngCryptoServiceProvider.GetBytes(randomBytes);
-            return Convert.ToBase64String(randomBytes);
         }
     }
 }

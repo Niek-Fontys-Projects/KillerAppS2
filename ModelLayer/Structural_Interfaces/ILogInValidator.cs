@@ -11,8 +11,9 @@ namespace ModelLayer.Structural_Interfaces
         UserName,
         PassWord
     }
-    public interface ILogInValidator
+    public interface IUserValidator
     {
         LogInResult ValidateUser(string _userName, string _passWord, IUserWithPassWord _user);
+        bool ValidateEMailAddress(string _email);
     }
 }

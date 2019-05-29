@@ -1,5 +1,4 @@
-﻿using DataLayer.DataBase.QueryBuilder;
-using DataLayer.DataBase.SyntaxMaker;
+﻿using DataLayer.DataBase.SyntaxMaker;
 using ModelLayer.General_Interfaces;
 using ModelLayer.General_Models;
 using ModelLayer.Structural_Interfaces;

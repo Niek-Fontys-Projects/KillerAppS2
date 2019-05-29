@@ -10,7 +10,7 @@ namespace ServiceLayer.Handlers
 {
     public class UserHandler
     {
-        private readonly ILogInValidator logInValidator;
+        private readonly IUserValidator userValidator;
         private readonly IUserRepo userRepo;
         private readonly ISaltHasher hasher;
 
@@ -18,7 +18,7 @@ namespace ServiceLayer.Handlers
         {
             //logInValidator = _logInValidator;
             //logInRepo = _logInRepo;
-            logInValidator = new Validator();
+            userValidator = new Validator();
             userRepo = new UserRepository();
             hasher = new SaltHasher();
         }
@@ -26,15 +26,17 @@ namespace ServiceLayer.Handlers
         public LogInResult ValidateLoginAttempt(LogInModel _lim)
         {
             IUserWithPassWord user = userRepo.GetUserByUserName(_lim.Username);
-            return logInValidator.ValidateUser(_lim.Username, hasher.Hash(_lim.Password, user.PassWordHash), user);
+            return userValidator.ValidateUser(_lim.Username, hasher.Hash(_lim.Password, user.PassWordHash), user);
         }
 
         public void Adduser(string _userName, string _eMail, string _passWord)
         {
+            userValidator.ValidateEMailAddress(_eMail);
+
             //verify email
             IObjectPair<string, string> hashAndSalt = hasher.HashNewSalt(_passWord);
             //wait for verification
-            userRepo.AddUser(_userName, _eMail, hashAndSalt.Object1, hashAndSalt.Object2); //werkt
+            userRepo.AddUser(_userName, _eMail, hashAndSalt.Object1, hashAndSalt.Object2);
         }
     }
 }
