@@ -1,4 +1,5 @@
-﻿using ModelLayer.General_Interfaces;
+﻿using LogicLayer.Hasher;
+using ModelLayer.General_Interfaces;
 using ModelLayer.Structural_Interfaces;
 using System.Net.Mail;
 
@@ -6,9 +7,10 @@ namespace LogicLayer.LogInValidator
 {
     public class Validator : IUserValidator
     {
+        private readonly ISaltHasher hasher;
         public Validator()
         {
-
+            hasher = new SaltHasher();
         }
 
         public LogInResult ValidateUser(string _userName, string _passWord, IUserWithPassWord _user)
@@ -17,7 +19,7 @@ namespace LogicLayer.LogInValidator
             {
                 return LogInResult.UserName;
             }
-            if (_passWord != _user.PassWord)
+            if (hasher.Hash(_passWord, _user.PassWordHash) != _user.PassWord)
             {
                 return LogInResult.PassWord;
             }

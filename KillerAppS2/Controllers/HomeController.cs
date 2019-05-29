@@ -13,19 +13,19 @@ namespace KillerAppS2.Controllers
             userHandler = new UserHandler();
         }
 
-        [HttpPost]
-        public IActionResult Index(LogInModel _lim)
-        {
-            //userHandler.Adduser("Niek", "niek.sleddens@gmail.com", "Leviathan");
-            //if (ModelState.IsValid)
-            //{
-            //    userHandler.ValidateLoginAttempt(_lim);
-            //    {
-            //        return View();
-            //    }
-            //}
-            return View("Index");
-        }
+        //[HttpPost]
+        //public IActionResult Index()
+        //{
+        //    //userHandler.Adduser("Niek", "niek.sleddens@gmail.com", "Leviathan");
+        //    //if (ModelState.IsValid)
+        //    //{
+        //    //    userHandler.ValidateLoginAttempt(_lim);
+        //    //    {
+        //    //        return View();
+        //    //    }
+        //    //}
+        //    return View("Index");
+        //}
         public IActionResult Index()
         {
             return View();

@@ -1,3 +1,38 @@
 {
-  "errorlog":  []
+  "errorlog": [
+    {
+      "query": "Call GetuserByUserName('t')",
+      "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.Open()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.Open()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.GetConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlConnection.Open()"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 62"
+        }
+      ],
+      "datetime": "29/05/2019 20:37:59"
+    }
+  ]
 }

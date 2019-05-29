@@ -9,9 +9,9 @@ namespace PresentationLayer.Controllers
     {
         private UserHandler userHandler;
 
-        public UserController(UserHandler _userHandler)
+        public UserController()
         {
-            userHandler = _userHandler;
+            userHandler = new UserHandler();
         }
 
         public IActionResult AddUser(AddUserModel _aum)
@@ -31,8 +31,9 @@ namespace PresentationLayer.Controllers
                 var resultPair = userHandler.ValidateLoginAttempt(_lim);
                 if (resultPair.Object1 == ModelLayer.Structural_Interfaces.LogInResult.Good)
                 {
-                    HttpContext.Session.SetString("User", resultPair.Object2.UserID);
+                    HttpContext.Session.SetString("UserID", resultPair.Object2.UserID);
                     HttpContext.Session.SetString("UserName", resultPair.Object2.UserName);
+                    ISession s = HttpContext.Session;
                     return View();
                 }
             }

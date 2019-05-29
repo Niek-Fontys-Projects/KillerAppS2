@@ -29,7 +29,8 @@ namespace ServiceLayer.Handlers
         public IObjectPair<LogInResult, IUser> ValidateLoginAttempt(LogInModel _lim)
         {
             IUserWithPassWord user = userRepo.GetUserByUserName(_lim.Username);
-            return new ObjectPair<LogInResult, IUser>(userValidator.ValidateUser(_lim.Username, hasher.Hash(_lim.Password, user.PassWordHash), user), user);
+            LogInResult l = userValidator.ValidateUser(_lim.Username, _lim.Password, user);
+            return new ObjectPair<LogInResult, IUser>(l, user);
         }
 
         public bool Adduser(AddUserModel _aum)
