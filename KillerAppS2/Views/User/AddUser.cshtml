@@ -1,4 +1,4 @@
-﻿@model ServiceLayer.InputViewModels.LogInModel
+﻿@model ServiceLayer.InputViewModels.AddUserModel
 
 @{
     Layout = null;
@@ -23,14 +23,11 @@
     </environment>
 </head>
 <body>
-    <div class="loginContainer">
-        <h2>Login</h2>
-        <form method="post">
-            <input asp-for="Username" class="form-control">
-            <input asp-for="Password" class="form-control">
-            <div><input type="submit" value="Login" class="btn" /></div>
-        </form>
-        <a asp-controller="User" asp-action="AddUser">Create Account</a>
-    </div>
+    <form method="post">
+        <input asp-for="Username" class="form-control" />
+        <input asp-for="Password" class="form-control" />
+        <input asp-for="Email" class="form-control" />
+        <div><input type="submit" value="Create Account" class="btn" /></div>
+    </form>
 </body>
 </html>

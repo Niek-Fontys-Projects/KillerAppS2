@@ -14,11 +14,21 @@ namespace PresentationLayer.Controllers
             userHandler = new UserHandler();
         }
 
+        [HttpGet]
+        public IActionResult AddUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult AddUser(AddUserModel _aum)
         {
             if (ModelState.IsValid)
             {
-                userHandler.Adduser(_aum);
+                if (userHandler.Adduser(_aum))
+                {
+                    return View("LogIn");
+                }
             }
             return View();
         }

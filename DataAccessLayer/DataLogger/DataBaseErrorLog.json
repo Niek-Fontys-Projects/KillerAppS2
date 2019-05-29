@@ -1,7 +1,7 @@
 {
   "errorlog": [
     {
-      "query": "Call GetuserByUserName('t')",
+      "query": "INSERT INTO `user`(`UserID`, `UserName`, `EMail`, `PassWord`, `PassWordHash`) VALUES (NULL,'Test','Test@Test.Test','FC-87-23-84-09-C2-53-96-B6-B1-25-78-30-7B-99-97-C6-32-73-9D-60-A4-38-24-A5-3D-B3-22-1F-06-8D-7D','8i1dgVfF+UuWmoCCzklalSeSIdCnVT1ii+MHpt/NnASPHLuKk8QRJIKxqQHfC0wVD97GUFsb8uYRhsnBfgZLXg==')",
       "errormessage": "Unable to connect to any of the specified MySQL hosts.",
       "callstack": [
         {
@@ -29,10 +29,10 @@
           "call": "at MySql.Data.MySqlClient.MySqlConnection.Open()"
         },
         {
-          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 62"
+          "call": "at DataLayer.DataBase.DataBase.ExecuteInsertQuery() in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 37"
         }
       ],
-      "datetime": "29/05/2019 20:37:59"
+      "datetime": "29/05/2019 21:18:35"
     }
   ]
 }
