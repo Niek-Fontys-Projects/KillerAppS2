@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.Handlers;
 
 namespace PresentationLayer.Controllers
 {
     public class RiddleController : Controller
     {
-        public IActionResult Category(string _categorieName)
+        RiddleHandler riddleHandler;
+
+        public RiddleController()
         {
-            return View();
+            riddleHandler = new RiddleHandler();
+        }
+        public IActionResult Category(string _categoryName)
+        {
+            return View("RiddlePage", riddleHandler.GetRiddlesFromCategory(_categoryName));
         }
     }
 }

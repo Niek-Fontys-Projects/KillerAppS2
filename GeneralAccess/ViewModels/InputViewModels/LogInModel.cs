@@ -8,8 +8,8 @@ namespace ServiceLayer.ViewModels.InputViewModels
     public class LogInModel
     {
         [Required(ErrorMessage = "UserName is required"), Display(Name ="Username", Prompt ="Username")]
-        public string Username { internal get; set; }
+        public string Username { get; set; }
         [Required(ErrorMessage = "Password is required"), Display(Name = "Password", Prompt = "Password"), DataType(DataType.Password)]
-        public string Password { internal get; set; }
+        public string Password { get; set; }
     }
 }

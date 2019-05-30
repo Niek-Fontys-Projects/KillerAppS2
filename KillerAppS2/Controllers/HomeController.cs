@@ -5,11 +5,11 @@ namespace KillerAppS2.Controllers
 {
     public class HomeController : Controller
     {
-        private UserHandler userHandler;
+        private CategoryHandler categoryHandler;
 
         public HomeController()
         {
-            userHandler = new UserHandler();
+            categoryHandler = new CategoryHandler();
         }
 
         //[HttpPost]
@@ -27,7 +27,7 @@ namespace KillerAppS2.Controllers
         //}
         public IActionResult Index()
         {
-            return View("StartPage");
+            return View("StartPage", categoryHandler.GetAllCategories());
         }
     }
 }

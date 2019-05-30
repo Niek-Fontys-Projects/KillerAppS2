@@ -8,6 +8,6 @@ namespace ModelLayer.General_Interfaces
         string RiddleName { get; }
         string RiddleContent { get; }
         string Answer { get; }
-        IEnumerable<ICategory> Categories { get; }
+        IEnumerable<ICategory> Categories { get; set; }
     }
 }

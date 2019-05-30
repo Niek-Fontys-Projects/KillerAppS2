@@ -7,6 +7,15 @@ namespace ModelLayer.General_Models
 {
     public class Category : ICategory
     {
-        public string CategoryName { get; set; }
+        private string categoryName;
+        public Category()
+        {
+            categoryName = String.Empty;
+        }
+        public string CategoryName
+        {
+            get { return categoryName; }
+            set { categoryName = value; }
+        }
     }
 }

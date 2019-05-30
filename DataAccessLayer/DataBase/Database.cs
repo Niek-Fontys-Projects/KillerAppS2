@@ -19,7 +19,7 @@ namespace DataLayer.DataBase
 
         public DataBase()
         {
-            connection = new MySqlConnection("server=localhost; database=s2riddle#3; Uid=root; password=;");
+            connection = new MySqlConnection("server=localhost; database=s2riddle#4; Uid=root; password=;");
             queryBuilder = new QueryBuilder.QueryBuilder(new MySQLSyntaxMaker());
             adapter = new MySqlDataAdapter();
             errorLogger = new JSonLogger();
@@ -34,9 +34,9 @@ namespace DataLayer.DataBase
         {
             try
             {
-                connection.Open();
                 MySqlCommand command = connection.CreateCommand();
                 command.CommandText = queryBuilder.Query;
+                connection.Open();
                 command.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -83,5 +83,30 @@ namespace DataLayer.DataBase
             }
             return objects;
         }
+
+        //public IEnumerable<T> ExecuteListObjectStoredProcedure<T>()
+        //{
+        //    IList<T> list = new List<T>();
+        //    DataTable table = new DataTable();
+        //    adapter.SelectCommand = new MySqlCommand(queryBuilder.Query);
+        //    try
+        //    {
+        //        connection.Open();
+        //        adapter.Fill(table);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Task.Run(() => errorLogger.DataBaseErrorLogger(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
+        //    foreach(DataRow row in table.Rows)
+        //    {
+        //        list.Add((T)row.ItemArray[0]);
+        //    }
+        //    return list;
+        //}
     }
 }

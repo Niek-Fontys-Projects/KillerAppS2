@@ -33,6 +33,80 @@
         }
       ],
       "datetime": "29/05/2019 21:18:35"
+    },
+    {
+      "query": "Call GetAllCategories()",
+      "errormessage": "PROCEDURE s2riddle#3.GetAllCategories does not exist",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.NextResult()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "30/05/2019 14:05:16"
+    },
+    {
+      "query": "Call GetCategoryNamesByRiddleName('TestRiddle')",
+      "errormessage": "PROCEDURE s2riddle#4.GetCategoryNamesByRiddleName does not exist",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.NextResult()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "30/05/2019 20:41:12"
     }
   ]
 }

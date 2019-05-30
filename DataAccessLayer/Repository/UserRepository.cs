@@ -17,7 +17,7 @@ namespace DataLayer.Repository
         public IUserWithPassWord GetUserByUserName(string _userName)
         {
             object[] param = new object[1] { _userName };
-            dataBase.QueryBuilder.StoredProcedure("GetuserByUserName", param);
+            dataBase.QueryBuilder.StoredProcedure("GetUserByUserName", param);
             return dataBase.ExecuteStoredProcedure<IUserWithPassWord>(typeof(User)).DefaultIfEmpty(null).FirstOrDefault();
         }
 
