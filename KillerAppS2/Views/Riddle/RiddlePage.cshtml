@@ -26,6 +26,13 @@
     @foreach (var riddle in Model.Riddles)
     {
         <a>@riddle.RiddleName</a>
+        <a>@riddle.RiddleContent</a>
+        <a>@riddle.Answer</a>
+        <a>@riddle.UserName</a>
+        @foreach (var category in riddle.Categories)
+        {
+            <a asp-controller="Riddle" asp-action="Category" asp-route-_categoryName="@category.CategoryName">@category.CategoryName</a>
+        }
     }
 </body>
 </html>

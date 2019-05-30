@@ -83,30 +83,5 @@ namespace DataLayer.DataBase
             }
             return objects;
         }
-
-        //public IEnumerable<T> ExecuteListObjectStoredProcedure<T>()
-        //{
-        //    IList<T> list = new List<T>();
-        //    DataTable table = new DataTable();
-        //    adapter.SelectCommand = new MySqlCommand(queryBuilder.Query);
-        //    try
-        //    {
-        //        connection.Open();
-        //        adapter.Fill(table);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Task.Run(() => errorLogger.DataBaseErrorLogger(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
-        //    }
-        //    finally
-        //    {
-        //        connection.Close();
-        //    }
-        //    foreach(DataRow row in table.Rows)
-        //    {
-        //        list.Add((T)row.ItemArray[0]);
-        //    }
-        //    return list;
-        //}
     }
 }
