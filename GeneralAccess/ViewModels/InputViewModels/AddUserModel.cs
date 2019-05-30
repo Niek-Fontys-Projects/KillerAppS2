@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ServiceLayer.InputViewModels
+namespace ServiceLayer.ViewModels.InputViewModels
 {
     public class AddUserModel
     {

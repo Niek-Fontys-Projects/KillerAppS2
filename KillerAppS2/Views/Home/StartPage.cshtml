@@ -1,8 +1,9 @@
-﻿@model ServiceLayer.ViewModels.InputViewModels.AddUserModel
+﻿@model string
 
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 
 <html>
@@ -23,11 +24,9 @@
     </environment>
 </head>
 <body>
-    <form method="post">
-        <input asp-for="Username" class="form-control" />
-        <input asp-for="Password" class="form-control" />
-        <input asp-for="Email" class="form-control" />
-        <div><input type="submit" value="Create Account" class="btn" /></div>
-    </form>
+    @*<div class="_navbar">@Html.Partial("../Shared/_nav")</div>
+        <div class="_anouncementsboard">@Html.Partial("../Shared/_announcements")</div>
+        <div class="_catagories">@Html.Partial("../Shared/_categories")</div>*@
+<a asp-controller="User" asp-action="LogIn">LogIn</a>
 </body>
 </html>

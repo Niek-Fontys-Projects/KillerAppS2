@@ -1,9 +1,8 @@
-﻿@model ServiceLayer.InputViewModels.LogInModel
+﻿@model ServiceLayer.ViewModels.OutputViewModels.RiddlesResultModel
 
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 
 <html>
@@ -24,9 +23,9 @@
     </environment>
 </head>
 <body>
-    @*<div class="_navbar">@Html.Partial("../Shared/_nav")</div>
-        <div class="_anouncementsboard">@Html.Partial("../Shared/_announcements")</div>
-        <div class="_catagories">@Html.Partial("../Shared/_categories")</div>*@
-<a asp-controller="User" asp-action="LogIn">LogIn</a>
+    @foreach (var riddle in Model.Riddles)
+    {
+        <a>@riddle.RiddleName</a>
+    }
 </body>
 </html>
