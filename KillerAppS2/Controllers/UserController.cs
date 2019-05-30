@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Handlers;
-using ServiceLayer.InputViewModels;
+using ServiceLayer.ViewModels.InputViewModels;
 
 namespace PresentationLayer.Controllers
 {

@@ -1,13 +1,12 @@
 ﻿using DataLayer.Repository;
 using ModelLayer.General_Interfaces;
 using ModelLayer.Structural_Interfaces;
-using ServiceLayer.InputViewModels;
-using LogicLayer;
 using LogicLayer.LogInValidator;
 using LogicLayer.Hasher;
 using LogicLayer.MailSender;
 using System.Threading.Tasks;
 using ModelLayer.General_Models;
+using ServiceLayer.ViewModels.InputViewModels;
 
 namespace ServiceLayer.Handlers
 {

@@ -1,13 +1,12 @@
 ﻿using DataLayer.DataBase;
 using ModelLayer.General_Interfaces;
 using ModelLayer.General_Models;
-using System;
+using ModelLayer.Structural_Interfaces;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DataAccessLayer.Repository
 {
-    public class CategoryRepository
+    public class CategoryRepository : ICategoryRepo
     {
         IDataBase dataBase;
 

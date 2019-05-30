@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Handlers;
-using ServiceLayer.InputViewModels;
 
 namespace KillerAppS2.Controllers
 {
@@ -28,7 +27,7 @@ namespace KillerAppS2.Controllers
         //}
         public IActionResult Index()
         {
-            return View();
+            return View("StartPage");
         }
     }
 }
