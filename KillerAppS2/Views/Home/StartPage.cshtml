@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model ServiceLayer.ViewModels.OutputViewModels.CatrgoriesModel
 
 @{
     Layout = null;
@@ -27,6 +27,10 @@
     @*<div class="_navbar">@Html.Partial("../Shared/_nav")</div>
         <div class="_anouncementsboard">@Html.Partial("../Shared/_announcements")</div>
         <div class="_catagories">@Html.Partial("../Shared/_categories")</div>*@
+    @foreach(var category in Model.Categories)
+    {
+        <a href="Riddle/Category/ + @category.CategoryName">@category.CategoryName</a>
+    }
 <a asp-controller="User" asp-action="LogIn">LogIn</a>
 </body>
 </html>

@@ -3,6 +3,5 @@
     public interface ICategory
     {
         string CategoryName { get; }
-        string ParentCategory { get; }
     }
 }

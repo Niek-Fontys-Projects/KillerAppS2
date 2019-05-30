@@ -8,7 +8,7 @@ namespace PresentationLayer.Controllers
 {
     public class RiddleController : Controller
     {
-        public IActionResult Categorie(string _categorieName)
+        public IActionResult Category(string _categorieName)
         {
             return View();
         }
