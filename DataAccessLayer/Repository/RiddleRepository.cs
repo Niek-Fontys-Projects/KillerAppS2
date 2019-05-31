@@ -27,8 +27,17 @@ namespace DataAccessLayer.Repository
                 param = new object[1] { riddle.RiddleName };
                 dataBase.QueryBuilder.StoredProcedure("GetCategoryNamesByRiddleName", param);
                 riddle.Categories = dataBase.ExecuteStoredProcedure<ICategory>(typeof(Category));
+                dataBase.QueryBuilder.StoredProcedure("GetMessagesByRiddleName", param);
+                riddle.Messages = dataBase.ExecuteStoredProcedure<IMessage>(typeof(Message));
             }
             return riddles;
+        }
+
+        public void PostMessage(string _userID, string _riddleName, string _message)
+        {
+            object[] param = new object[3] { _userID, _riddleName, _message };
+            dataBase.QueryBuilder.StoredProcedure("InsertMessage", param);
+            dataBase.ExecuteInsertQuery();
         }
     }
 }

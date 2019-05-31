@@ -23,7 +23,10 @@ namespace ServiceLayer.Handlers
 
         public RiddlePageModel PostMessage(RiddlePageModel _rpm)
         {
-
+            //filter message
+            riddleRepo.PostMessage(_rpm.Post.UserID, _rpm.Post.RiddleName, _rpm.Post.Message);
+            //update affected video
+            return _rpm;
         }
     }
 }

@@ -21,7 +21,8 @@ namespace DataLayer.DataBase.SyntaxMaker
             new ObjectPair<Type, string>(typeof(IRiddle), "INSERT INTO `riddle`(`UserID`, `RiddleName`, `Riddle`, `Answer`) VALUES ")};
             columnPreFix = new Dictionary<Type, string>()
             {
-                { typeof(IUserWithPassWord), "`user`(`UserID`, `UserName`, `EMail`, `PassWord`, `PassWordHash`)" }
+                { typeof(IUserWithPassWord), "`user`(`UserID`, `UserName`, `EMail`, `PassWord`, `PassWordHash`)" },
+                { typeof(IMessage)         , "`message`(`UserID`, `RiddleID`, `Message`, `TimeStamp`)" }
             };
         }
 
@@ -36,7 +37,7 @@ namespace DataLayer.DataBase.SyntaxMaker
             {
                 syntax += "NULL";
             }
-            else if(_objectToBeParameterized.GetType() == typeof(string))
+            else if (_objectToBeParameterized.GetType() == typeof(string))
             {
                 syntax += String.Format("'{0}'", _objectToBeParameterized);
             }

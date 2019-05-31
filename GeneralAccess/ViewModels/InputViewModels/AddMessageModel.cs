@@ -7,13 +7,11 @@ namespace ServiceLayer.ViewModels.InputViewModels
 {
     public class AddMessageModel
     {
-        [Required(ErrorMessage ="Please enter a message"), Display(Name ="message", Prompt ="Message"), DataType(DataType.MultilineText)]
+        [Required(ErrorMessage ="Please enter a message"), Display(Name ="Message", Prompt ="Message"), DataType(DataType.MultilineText)]
         public string Message { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Enter the riddle name you would like to reply to"), Display(Name ="RiddleName", Prompt ="RiddleName")]
         public string RiddleName { get; set; }
         [Required]
         public string UserID { get; set; }
-        [Required]
-        public DateTime Time { get; set; }
     }
 }

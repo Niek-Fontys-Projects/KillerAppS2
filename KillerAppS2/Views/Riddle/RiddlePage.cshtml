@@ -3,6 +3,7 @@
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 
 <html>
@@ -21,6 +22,9 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <script>
+
+    </script>
 </head>
 <body>
     @foreach (var riddle in Model.Get.Riddles)
@@ -33,22 +37,21 @@
         {
             <a asp-controller="Riddle" asp-action="Category" asp-route-_categoryName="@category.CategoryName">@category.CategoryName</a>
         }
-        @foreach(var message in riddle.Messages)
+        @foreach (var message in riddle.Messages)
         {
-            <a>@message.Message</a>
+            <a>@message.MessageContent</a>
             <a>@message.UserName</a>
             <a>@message.Time</a>
         }
-        @using Microsoft.AspNetCore.Http;
-        {
-            @if (!String.IsNullOrEmpty(Context.Session.GetString("UserID")))
-            {
-                <form method="post" asp-controller="Riddle" asp-action="PostMessage">
-                    <input asp-for="Post.Message" class="form-control" />
-                    <div><input type="submit" value="Send" class="btn" /></div>
-                </form>
-            }
-        }
+    }
+    @using Microsoft.AspNetCore.Http;
+    @if (!String.IsNullOrEmpty(Context.Session.GetString("UserID")))
+    {
+        <form method="post" asp-controller="Riddle" asp-action="PostMessage">
+            <input asp-for="Post.RiddleName" class="form-control" />
+            <input asp-for="Post.Message" class="form-control" />
+            <div><input type="submit" value="Send" class="btn" /></div>
+        </form>
     }
 </body>
 </html>

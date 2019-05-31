@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Handlers;
 using ServiceLayer.ViewModels;
@@ -25,6 +26,7 @@ namespace PresentationLayer.Controllers
         [HttpPost]
         public IActionResult PostMessage(RiddlePageModel _rpm)
         {
+            _rpm.Post.UserID = HttpContext.Session.GetString("UserID");
             return View("RiddlePage", riddleHandler.PostMessage(_rpm));
         }
     }

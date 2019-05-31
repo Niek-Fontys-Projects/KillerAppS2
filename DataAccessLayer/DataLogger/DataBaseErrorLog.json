@@ -169,6 +169,157 @@
         }
       ],
       "datetime": "31/05/2019 13:18:12"
+    },
+    {
+      "query": "Call InsertMessage('bc397b21-8395-11e9-b55e-1062e58ec6e2','TestRiddle','Testing',31/05/2019 21:27:22)",
+      "errormessage": "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '21:27:22)' at line 1",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.NextResult()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteInsertQuery() in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 40"
+        }
+      ],
+      "datetime": "31/05/2019 21:27:22"
+    },
+    {
+      "query": "Call GetMessagesByRiddleName('TestRiddle')",
+      "errormessage": "PROCEDURE s2riddle#4.GetMessagesByRiddleName does not exist",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.NextResult()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "31/05/2019 21:50:04"
+    },
+    {
+      "query": "Call GetMessagesByRiddleName('TestRiddle')",
+      "errormessage": "Unable to convert MySQL date/time value to System.DateTime",
+      "callstack": [
+        {
+          "call": "at MySql.Data.Types.MySqlDateTime.GetDateTime()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.GetValue(Int32 i)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.GetValues(Object[] values)"
+        },
+        {
+          "call": "at System.Data.ProviderBase.DataReaderContainer.CommonLanguageSubsetDataReader.GetValues(Object[] values)"
+        },
+        {
+          "call": "at System.Data.ProviderBase.SchemaMapping.LoadDataRow()"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "31/05/2019 21:51:09"
+    },
+    {
+      "query": "Call GetMessagesByRiddleName('TestRiddle')",
+      "errormessage": "Unable to convert MySQL date/time value to System.DateTime",
+      "callstack": [
+        {
+          "call": "at MySql.Data.Types.MySqlDateTime.GetDateTime()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.GetValue(Int32 i)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.GetValues(Object[] values)"
+        },
+        {
+          "call": "at System.Data.ProviderBase.DataReaderContainer.CommonLanguageSubsetDataReader.GetValues(Object[] values)"
+        },
+        {
+          "call": "at System.Data.ProviderBase.SchemaMapping.LoadDataRow()"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "31/05/2019 21:53:12"
     }
   ]
 }
