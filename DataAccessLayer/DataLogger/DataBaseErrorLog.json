@@ -107,6 +107,68 @@
         }
       ],
       "datetime": "30/05/2019 20:41:12"
+    },
+    {
+      "query": "Call GetAllCategories()",
+      "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.Open()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.Open()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.GetConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlConnection.Open()"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 62"
+        }
+      ],
+      "datetime": "31/05/2019 12:39:20"
+    },
+    {
+      "query": "INSERT INTO `user`(`UserID`, `UserName`, `EMail`, `PassWord`, `PassWordHash`) VALUES (NULL,'Admin','n.sleddens@student.fontys.nl','F6-25-1C-1F-58-DF-1D-3E-CB-B1-C0-24-CE-0A-5E-C5-8A-BD-49-2E-DB-24-67-A6-57-40-43-D1-97-D4-10-FA','GaUO7hlvGNkCZ2ja9SAbJo5JdWNrgmkI3LFYsrCivp1zPlK4SJwtiNYPotAaXT2UUq8ImqiE9RsECzC2nXHagg==')",
+      "errormessage": "Duplicate entry 'Admin' for key 'uc_User_UserName'",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.NextResult()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteInsertQuery() in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 40"
+        }
+      ],
+      "datetime": "31/05/2019 13:18:12"
     }
   ]
 }

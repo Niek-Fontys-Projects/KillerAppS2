@@ -7,11 +7,13 @@ namespace PresentationLayer.Controllers
 {
     public class UserController : Controller
     {
+        private CategoryHandler categoryHandler;
         private UserHandler userHandler;
 
         public UserController()
         {
             userHandler = new UserHandler();
+            categoryHandler = new CategoryHandler();
         }
 
         [HttpGet]
@@ -43,8 +45,7 @@ namespace PresentationLayer.Controllers
                 {
                     HttpContext.Session.SetString("UserID", resultPair.Object2.UserID);
                     HttpContext.Session.SetString("UserName", resultPair.Object2.UserName);
-                    ISession s = HttpContext.Session;
-                    return View();
+                    return View("../Home/StartPage", categoryHandler.GetAllCategories());
                 }
             }
             return View();

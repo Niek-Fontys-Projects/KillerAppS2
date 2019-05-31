@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Handlers;
+using ServiceLayer.ViewModels;
 
 namespace PresentationLayer.Controllers
 {
@@ -15,9 +16,16 @@ namespace PresentationLayer.Controllers
         {
             riddleHandler = new RiddleHandler();
         }
+
         public IActionResult Category(string _categoryName)
         {
             return View("RiddlePage", riddleHandler.GetRiddlesFromCategory(_categoryName));
+        }
+
+        [HttpPost]
+        public IActionResult PostMessage(RiddlePageModel _rpm)
+        {
+            return View("RiddlePage", riddleHandler.PostMessage(_rpm));
         }
     }
 }
