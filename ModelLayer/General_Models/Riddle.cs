@@ -12,6 +12,7 @@ namespace ModelLayer.General_Models
         private string riddleContent;
         private string answer;
         private IEnumerable<ICategory> categories;
+        private IEnumerable<IMessage> messages;
 
         public Riddle()
         {
@@ -20,6 +21,7 @@ namespace ModelLayer.General_Models
             riddleContent = String.Empty;
             answer = String.Empty;
             categories = new List<ICategory>();
+            messages = new List<IMessage>();
         }
 
         public string UserName
@@ -50,6 +52,12 @@ namespace ModelLayer.General_Models
         {
             get { return categories; }
             set { categories = value; }
+        }
+
+        public IEnumerable<IMessage> Messages
+        {
+            get { return messages; }
+            set { messages = value; }
         }
     }
 }

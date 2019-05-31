@@ -33,6 +33,12 @@
         {
             <a asp-controller="Riddle" asp-action="Category" asp-route-_categoryName="@category.CategoryName">@category.CategoryName</a>
         }
+        @foreach(var message in riddle.Messages)
+        {
+            <a>@message.Message</a>
+            <a>@message.UserName</a>
+            <a>@message.Time</a>
+        }
         @using Microsoft.AspNetCore.Http;
         {
             @if (!String.IsNullOrEmpty(Context.Session.GetString("UserID")))
