@@ -2,6 +2,6 @@
 {
     internal interface IDataBaseErrorLogger
     {
-        void DataBaseErrorLogger(string _query, string _errorMessage, string _callStack, string _dateTime);
+        void LogDataBaseError(string _query, string _errorMessage, string _callStack, string _dateTime);
     }
 }

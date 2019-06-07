@@ -8,7 +8,6 @@ namespace DataLayer.DataBase.SyntaxMaker
     internal class MySQLSyntaxMaker : ISyntaxMaker
     {
         private IEnumerable<IObjectPair<Type, string>> insertPreFixes;
-        private readonly string comma = ",";
         private IReadOnlyDictionary<Type, string> columnPreFix;
 
         public MySQLSyntaxMaker()
@@ -31,7 +30,7 @@ namespace DataLayer.DataBase.SyntaxMaker
             string syntax = _parameterString;
             if (syntax != String.Empty)
             {
-                syntax += comma;
+                syntax += ",";
             }
             if (_objectToBeParameterized == null)
             {

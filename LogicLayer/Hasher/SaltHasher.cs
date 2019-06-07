@@ -1,9 +1,8 @@
 ﻿using ModelLayer.General_Interfaces;
 using ModelLayer.General_Models;
+using ModelLayer.Structural_Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace LogicLayer.Hasher
 {

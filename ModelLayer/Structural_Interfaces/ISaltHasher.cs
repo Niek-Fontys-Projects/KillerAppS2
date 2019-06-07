@@ -1,6 +1,6 @@
 ﻿using ModelLayer.General_Interfaces;
 
-namespace LogicLayer.Hasher
+namespace ModelLayer.Structural_Interfaces
 {
     public interface ISaltHasher
     {

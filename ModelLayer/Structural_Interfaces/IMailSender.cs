@@ -1,4 +1,4 @@
-﻿namespace LogicLayer.MailSender
+﻿namespace ModelLayer.Structural_Interfaces
 {
     public interface IMailSender
     {

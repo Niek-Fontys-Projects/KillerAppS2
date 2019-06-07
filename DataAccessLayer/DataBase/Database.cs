@@ -41,7 +41,7 @@ namespace DataLayer.DataBase
             }
             catch (Exception e)
             {
-                Task.Run(() => errorLogger.DataBaseErrorLogger(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
+                Task.Run(() => errorLogger.LogDataBaseError(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
                 Type x = e.GetType();
                 return false;
             }
@@ -64,7 +64,7 @@ namespace DataLayer.DataBase
             }
             catch (Exception e)
             {
-                Task.Run(() => errorLogger.DataBaseErrorLogger(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
+                Task.Run(() => errorLogger.LogDataBaseError(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
             }
             finally
             {

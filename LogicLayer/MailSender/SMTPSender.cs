@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ModelLayer.Structural_Interfaces;
 using System.Net.Mail;
-using System.Text;
 
 namespace LogicLayer.MailSender
 {
     public class SMTPSender : IMailSender
     {
-        SmtpClient client;
-        MailMessage mail;
+        private SmtpClient client;
+        private MailMessage mail;
         public SMTPSender()
         {
             client = new SmtpClient("smtp.gmail.com");

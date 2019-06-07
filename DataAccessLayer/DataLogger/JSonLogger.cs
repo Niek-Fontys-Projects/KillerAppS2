@@ -14,7 +14,7 @@ namespace DataLayer.DataLogger
 
         }
 
-        public void DataBaseErrorLogger(string _query, string _errorMessage, string _callStack, string _dateTime)
+        public void LogDataBaseError(string _query, string _errorMessage, string _callStack, string _dateTime)
         {
             JObject dbErrors = JObject.Parse(File.ReadAllText(@"..\DataAccessLayer\DataLogger\DataBaseErrorLog.json"));
             JObject error = new JObject();
