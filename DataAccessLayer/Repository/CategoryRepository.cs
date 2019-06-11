@@ -19,7 +19,7 @@ namespace DataAccessLayer.Repository
         {
             object[] param = new object[0];
             dataBase.QueryBuilder.StoredProcedure("GetAllCategories", param);
-            return dataBase.ExecuteStoredProcedure<ICategory>(typeof(Category));
+            return dataBase.ExecuteSelectQuery<ICategory>(typeof(Category));
         }
     }
 }

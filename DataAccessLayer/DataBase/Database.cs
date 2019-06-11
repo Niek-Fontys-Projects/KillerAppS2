@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -42,7 +43,6 @@ namespace DataLayer.DataBase
             catch (Exception e)
             {
                 Task.Run(() => errorLogger.LogDataBaseError(queryBuilder.Query, e.Message, e.StackTrace, DateTime.Now.ToString()));
-                Type x = e.GetType();
                 return false;
             }
             finally
@@ -52,7 +52,7 @@ namespace DataLayer.DataBase
             return true;
         }
 
-        public IEnumerable<T> ExecuteStoredProcedure<T>(Type _instanciatedObjectType)
+        public IEnumerable<T> ExecuteSelectQuery<T>(Type _instanciatedObjectType)
         {
             DataTable table = new DataTable();
             IList<T> objects = new List<T>();
@@ -77,7 +77,7 @@ namespace DataLayer.DataBase
                 object[] values = row.ItemArray;
                 for (int i = 0; i < values.Length; i++)
                 {
-                    properties[i].SetValue(newObject, values[i]);
+                    properties.Where(x => x.Name == table.Columns[i].ColumnName).First().SetValue(newObject, values[i]);
                 }
                 objects.Add(newObject);
             }

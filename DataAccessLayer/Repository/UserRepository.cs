@@ -18,7 +18,7 @@ namespace DataLayer.Repository
         {
             object[] param = new object[1] { _userName };
             dataBase.QueryBuilder.StoredProcedure("GetUserByUserName", param);
-            return dataBase.ExecuteStoredProcedure<IUserWithPassWord>(typeof(User)).DefaultIfEmpty(null).FirstOrDefault();
+            return dataBase.ExecuteSelectQuery<IUserWithPassWord>(typeof(User)).DefaultIfEmpty(null).FirstOrDefault();
         }
 
         public bool AddUser(string _userName, string _mail, string _passWord, string _PassWordhash)

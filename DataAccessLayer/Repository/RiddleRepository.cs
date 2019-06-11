@@ -21,14 +21,14 @@ namespace DataAccessLayer.Repository
         {
             object[] param = new object[1] { _categoryName };
             dataBase.QueryBuilder.StoredProcedure("GetRiddleByCategoryName", param);
-            IEnumerable<IRiddle> riddles = dataBase.ExecuteStoredProcedure<IRiddle>(typeof(Riddle));
+            IEnumerable<IRiddle> riddles = dataBase.ExecuteSelectQuery<IRiddle>(typeof(Riddle));
             foreach(IRiddle riddle in riddles)
             {
                 param = new object[1] { riddle.RiddleName };
                 dataBase.QueryBuilder.StoredProcedure("GetCategoryNamesByRiddleName", param);
-                riddle.Categories = dataBase.ExecuteStoredProcedure<ICategory>(typeof(Category));
+                riddle.Categories = dataBase.ExecuteSelectQuery<ICategory>(typeof(Category));
                 dataBase.QueryBuilder.StoredProcedure("GetMessagesByRiddleName", param);
-                riddle.Messages = dataBase.ExecuteStoredProcedure<IMessage>(typeof(Message));
+                riddle.Messages = dataBase.ExecuteSelectQuery<IMessage>(typeof(Message));
             }
             return riddles;
         }

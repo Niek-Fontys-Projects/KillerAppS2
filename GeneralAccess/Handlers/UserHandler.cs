@@ -28,7 +28,7 @@ namespace ServiceLayer.Handlers
         public IObjectPair<LogInResult, IUser> ValidateLoginAttempt(LogInModel _lim)
         {
             IUserWithPassWord user = userRepo.GetUserByUserName(_lim.Username);
-            LogInResult l = userValidator.ValidateUser(_lim.Username, _lim.Password, user);
+            LogInResult l = userValidator.ValidateUser(_lim.Password, user);
             return new ObjectPair<LogInResult, IUser>(l, user);
         }
 

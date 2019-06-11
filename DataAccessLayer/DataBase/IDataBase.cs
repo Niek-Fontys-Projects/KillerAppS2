@@ -9,6 +9,6 @@ namespace DataLayer.DataBase
         IQueryBuilder QueryBuilder { get; }
 
         bool ExecuteInsertQuery();
-        IEnumerable<T> ExecuteStoredProcedure<T>(Type _instanciatedObjectType);
+        IEnumerable<T> ExecuteSelectQuery<T>(Type _instanciatedObjectType);
     }
 }

@@ -13,7 +13,7 @@ namespace LogicLayer.LogInValidator
             hasher = new SaltHasher();
         }
 
-        public LogInResult ValidateUser(string _userName, string _passWord, IUserWithPassWord _user)
+        public LogInResult ValidateUser(string _passWord, IUserWithPassWord _user)
         {
             if (_user == null)
             {

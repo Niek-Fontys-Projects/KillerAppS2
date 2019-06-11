@@ -7,7 +7,7 @@ namespace ModelLayer.General_Models
 {
     public class Riddle : IRiddle
     {
-        private string username;
+        private IUser user;
         private string riddleName;
         private string riddleContent;
         private string answer;
@@ -16,7 +16,7 @@ namespace ModelLayer.General_Models
 
         public Riddle()
         {
-            username = String.Empty;
+            user = null;
             riddleName = String.Empty;
             riddleContent = String.Empty;
             answer = String.Empty;
@@ -24,10 +24,10 @@ namespace ModelLayer.General_Models
             messages = new List<IMessage>();
         }
 
-        public string UserName
+        public IUser User
         {
-            get { return username; }
-            set { username = value; }
+            get { return user; }
+            set { user = value; }
         }
 
         public string RiddleName

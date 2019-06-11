@@ -4,7 +4,7 @@ namespace ModelLayer.General_Interfaces
 {
     public interface IRiddle
     {
-        string UserName { get; }
+        IUser User { get; }
         string RiddleName { get; }
         string RiddleContent { get; }
         string Answer { get; }
