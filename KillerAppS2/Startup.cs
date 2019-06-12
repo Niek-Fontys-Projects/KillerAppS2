@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServiceLayer;
 
 namespace KillerAppS2
 {
@@ -35,6 +36,7 @@ namespace KillerAppS2
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSession(option => { option.Cookie.IsEssential = true; option.IdleTimeout = TimeSpan.FromMinutes(30); });
+            Configuration.ServiceLayerConfig();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

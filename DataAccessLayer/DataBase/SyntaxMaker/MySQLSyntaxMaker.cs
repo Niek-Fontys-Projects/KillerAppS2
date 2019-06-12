@@ -7,22 +7,11 @@ namespace DataLayer.DataBase.SyntaxMaker
 {
     internal class MySQLSyntaxMaker : ISyntaxMaker
     {
-        private IEnumerable<IObjectPair<Type, string>> insertPreFixes;
         private IReadOnlyDictionary<Type, string> columnPreFix;
 
-        public MySQLSyntaxMaker()
+        public MySQLSyntaxMaker(IReadOnlyDictionary<Type, string> _columnPreFix)
         {
-            insertPreFixes = new List<IObjectPair<Type, string>>() {
-            new ObjectPair<Type, string>(typeof(IAnnouncement), "INSERT INTO `announcements` (`Topic`, `Content`) VALUES "),
-            new ObjectPair<Type, string>(typeof(IRating), "INSERT INTO `rating`(`User`, `Riddle`, `Score`) VALUES "),
-            new ObjectPair<Type, string>(typeof(IMessage), "INSERT INTO `message`(`User`, `Riddle`, `Message`) VALUES "),
-            new ObjectPair<Type, string>(typeof(IAnswerSuggestion), "INSERT INTO `suggestedanswer`(`User`, `Riddle`, `Answer`) VALUES "),
-            new ObjectPair<Type, string>(typeof(IRiddle), "INSERT INTO `riddle`(`UserID`, `RiddleName`, `Riddle`, `Answer`) VALUES ")};
-            columnPreFix = new Dictionary<Type, string>()
-            {
-                { typeof(IUserWithPassWord), "`user`(`UserID`, `UserName`, `EMail`, `PassWord`, `PassWordHash`)" },
-                { typeof(IMessage)         , "`message`(`UserID`, `RiddleID`, `Message`, `TimeStamp`)" }
-            };
+            columnPreFix = _columnPreFix;
         }
 
         public string ToParameter(string _parameterString, object _objectToBeParameterized)

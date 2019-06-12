@@ -9,14 +9,16 @@ namespace DataLayer.DataLogger
 {
     internal class JSonLogger : IDataBaseErrorLogger
     {
-        public JSonLogger()
-        {
+        private string errorLogLocation;
 
+        public JSonLogger(string _errorLogLocation)
+        {
+            errorLogLocation = _errorLogLocation;
         }
 
         public void LogDataBaseError(string _query, string _errorMessage, string _callStack, string _dateTime)
         {
-            JObject dbErrors = JObject.Parse(File.ReadAllText(@"..\DataAccessLayer\DataLogger\DataBaseErrorLog.json"));
+            JObject dbErrors = JObject.Parse(File.ReadAllText(errorLogLocation));
             JObject error = new JObject();
             error.Add("query", _query);
             error.Add("errormessage", _errorMessage);
@@ -30,7 +32,7 @@ namespace DataLayer.DataLogger
             error.Add("callstack", callstack);
             error.Add("datetime", _dateTime);
             ((JArray)dbErrors["errorlog"]).Add(error);
-            StreamWriter stream = new StreamWriter(@"..\DataAccessLayer\DataLogger\DataBaseErrorLog.json");
+            StreamWriter stream = new StreamWriter(errorLogLocation);
             stream.Write(JsonConvert.SerializeObject(dbErrors, Formatting.Indented));
             stream.Close();
         }

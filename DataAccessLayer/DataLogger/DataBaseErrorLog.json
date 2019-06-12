@@ -598,6 +598,43 @@
         }
       ],
       "datetime": "12/06/2019 10:13:52"
+    },
+    {
+      "query": "Call GetAllCategories()",
+      "errormessage": "Host 'LT-0406' is not allowed to connect to this MariaDB server",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.Open()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.Open()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.GetConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlConnection.Open()"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteSelectQuery[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "12/06/2019 13:09:02"
     }
   ]
 }

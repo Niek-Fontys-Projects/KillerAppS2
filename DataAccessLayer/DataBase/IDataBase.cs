@@ -4,7 +4,7 @@ using DataLayer.DataBase.QueryBuilder;
 
 namespace DataLayer.DataBase
 {
-    public interface IDataBase
+    internal interface IDataBase
     {
         IQueryBuilder QueryBuilder { get; }
 
