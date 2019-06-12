@@ -1,5 +1,4 @@
-﻿using DataLayer.Repository;
-using ModelLayer.General_Interfaces;
+﻿using ModelLayer.General_Interfaces;
 using ModelLayer.Structural_Interfaces;
 using LogicLayer.LogInValidator;
 using LogicLayer.Hasher;
@@ -19,10 +18,10 @@ namespace ServiceLayer.Handlers
 
         public UserHandler()
         {
-            userValidator = new Validator();
-            userRepo = new UserRepository();
-            hasher = new SaltHasher();
-            mailSender = new SMTPSender();
+            userValidator = Factory.GetUserValidator();
+            userRepo = Factory.GetUserRepo();
+            hasher = Factory.GetHasher();
+            mailSender = Factory.GetMailSender();
         }
 
         public IObjectPair<LogInResult, IUser> ValidateLoginAttempt(LogInModel _lim)

@@ -13,7 +13,7 @@ namespace ServiceLayer.Handlers
         IRiddleRepo riddleRepo;
         public RiddleHandler()
         {
-            riddleRepo = new RiddleRepository();
+            riddleRepo = Factory.GetRiddleRepo();
         }
 
         public RiddlePageModel GetRiddlesFromCategory(string _category)

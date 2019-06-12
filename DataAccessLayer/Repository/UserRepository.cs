@@ -5,7 +5,7 @@ using ModelLayer.General_Models;
 using ModelLayer.Structural_Interfaces;
 using System.Linq;
 
-namespace DataLayer.Repository
+namespace DataAccessLayer.Repository
 {
     public class UserRepository : IUserRepo
     {

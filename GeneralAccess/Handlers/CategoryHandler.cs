@@ -10,9 +10,10 @@ namespace ServiceLayer.Handlers
     public class CategoryHandler
     {
         private readonly ICategoryRepo categoryRepo;
+
         public CategoryHandler()
         {
-            categoryRepo = new CategoryRepository();
+            categoryRepo = Factory.GetCategoryRepo();
         }
 
         public CatrgoriesModel GetAllCategories()
