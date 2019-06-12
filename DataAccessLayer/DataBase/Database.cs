@@ -1,11 +1,9 @@
 ﻿using DataLayer.DataBase.QueryBuilder;
 using DataLayer.DataBase.SyntaxMaker;
 using DataLayer.DataLogger;
-using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -19,11 +17,11 @@ namespace DataLayer.DataBase
         private IQueryBuilderWithQuery queryBuilder;
         private IDataBaseErrorLogger errorLogger;
 
-        internal DataBase(IDataBaseErrorLogger _errorLogger)
+        internal DataBase(IDbConnection _connection, ISyntaxMaker _syntaxMaker, IDbDataAdapter _adapter, IDataBaseErrorLogger _errorLogger)
         {
-            connection = new MySqlConnection("server=localhost; database=s2riddle#4; Uid=root; password=;");
-            queryBuilder = new QueryBuilder.QueryBuilder(new MySQLSyntaxMaker());
-            adapter = new MySqlDataAdapter();
+            connection = _connection;
+            queryBuilder = new QueryBuilder.QueryBuilder(_syntaxMaker);
+            adapter = _adapter;
             errorLogger = _errorLogger;
         }
 
@@ -73,16 +71,19 @@ namespace DataLayer.DataBase
             {
                 connection.Close();
             }
-            foreach (DataRow row in set.Tables[0].Rows)
+            if (set.Tables.Count > 0)
             {
-                T newObject = (T)Activator.CreateInstance(_instanciatedObjectType);
-                PropertyInfo[] properties = newObject.GetType().GetProperties();
-                object[] values = row.ItemArray;
-                for (int i = 0; i < values.Length; i++)
+                foreach (DataRow row in set.Tables[0].Rows)
                 {
-                    properties.Where(x => x.Name == set.Tables[0].Columns[i].ColumnName).First().SetValue(newObject, values[i]);
+                    T newObject = (T)Activator.CreateInstance(_instanciatedObjectType);
+                    PropertyInfo[] properties = newObject.GetType().GetProperties();
+                    object[] values = row.ItemArray;
+                    for (int i = 0; i < values.Length; i++)
+                    {
+                        properties.Where(x => x.Name == set.Tables[0].Columns[i].ColumnName).First().SetValue(newObject, values[i]);
+                    }
+                    objects.Add(newObject);
                 }
-                objects.Add(newObject);
             }
             return objects;
         }

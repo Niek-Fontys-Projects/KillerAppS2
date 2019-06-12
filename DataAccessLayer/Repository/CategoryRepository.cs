@@ -12,7 +12,7 @@ namespace DataAccessLayer.Repository
 
         public CategoryRepository()
         {
-            dataBase = new DataBase(DataAccessFactory.GetDataBaseErrorLogger());
+            dataBase = Factory.GetDataBase();
         }
 
         public IEnumerable<ICategory> GetAllCategories()
