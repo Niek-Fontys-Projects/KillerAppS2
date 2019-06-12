@@ -7,22 +7,25 @@ namespace LogicLayer.MailSender
     {
         private SmtpClient client;
         private MailMessage mail;
+        private MailAddress fromAddress;
         public SMTPSender()
         {
-            client = new SmtpClient("smtp.gmail.com");
-            client.Port = 587;
+            client = Factory.GetSmtpClient();
+            fromAddress = Factory.GetFromAddress();
+            //remove for school host
             client.Credentials = new System.Net.NetworkCredential("riddleform.s27@gmail.com", "#Riddler2");
             client.EnableSsl = true;
+            //
             NewMail();
         }
 
         public void NewMail()
         {
-            mail = new MailMessage();
+            mail = Factory.GetMailMessage();
         }
         public void SendMail()
         {
-            mail.From = new MailAddress("riddleform.s27@gmail.com");
+            mail.From = fromAddress;
             client.Send(mail);
         }
 

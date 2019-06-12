@@ -18,17 +18,17 @@ namespace DataAccessLayer
             return new DataBase(GetDbConnection(), GetSyntaxMaker(), GetDataAdapter(), GetDataBaseErrorLogger());
         }
 
-        internal static IDbDataAdapter GetDataAdapter()
+        private static IDbDataAdapter GetDataAdapter()
         {
             return new MySqlDataAdapter();
         }
 
-        internal static ISyntaxMaker GetSyntaxMaker()
+        private static ISyntaxMaker GetSyntaxMaker()
         {
             return new MySQLSyntaxMaker(ColumnPrefixes);
         }
 
-        internal static IDbConnection GetDbConnection()
+        private static IDbConnection GetDbConnection()
         {
             return new MySqlConnection(ConnectionString);
         }
@@ -37,7 +37,7 @@ namespace DataAccessLayer
         #region ErrorLog
         internal static string ErrorLogLocation;
 
-        internal static IDataBaseErrorLogger GetDataBaseErrorLogger()
+        private static IDataBaseErrorLogger GetDataBaseErrorLogger()
         {
             return new JSonLogger(ErrorLogLocation);
         }

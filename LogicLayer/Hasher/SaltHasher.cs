@@ -8,14 +8,14 @@ namespace LogicLayer.Hasher
 {
     public class SaltHasher : ISaltHasher
     {
+        private RNGCryptoServiceProvider rngCryptoServiceProvider;
         public SaltHasher()
         {
-
+            rngCryptoServiceProvider = Factory.GetCryptoServiceProvider();
         }
 
         public IObjectPair<string, string> HashNewSalt(string _passWord)
         {
-            RNGCryptoServiceProvider rngCryptoServiceProvider = new RNGCryptoServiceProvider();
             byte[] randomBytes = new byte[64];
             rngCryptoServiceProvider.GetBytes(randomBytes);
             string salt = Convert.ToBase64String(randomBytes);

@@ -7,19 +7,18 @@ namespace LogicLayer.LogInValidator
 {
     public class Validator : IUserValidator
     {
-        private readonly ISaltHasher hasher;
         public Validator()
         {
-            hasher = new SaltHasher();
+
         }
 
         public LogInResult ValidateUser(string _passWord, IUserWithPassWord _user)
         {
-            if (_user == null)
+            if (_user.UserName == string.Empty)
             {
                 return LogInResult.UserName;
             }
-            if (hasher.Hash(_passWord, _user.PassWordHash) != _user.PassWord)
+            if (_passWord != _user.PassWord)
             {
                 return LogInResult.PassWord;
             }

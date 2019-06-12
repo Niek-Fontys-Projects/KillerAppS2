@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer;
+using LogicLayer;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace ServiceLayer
         public static void ServiceLayerConfig(this IConfiguration configuration)
         {
             configuration.DataAccessConfig();
+            configuration.LogicLayerConfig();
         }
     }
 }
