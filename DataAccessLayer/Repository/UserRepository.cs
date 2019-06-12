@@ -1,4 +1,5 @@
-﻿using DataLayer.DataBase;
+﻿using DataAccessLayer;
+using DataLayer.DataBase;
 using ModelLayer.General_Interfaces;
 using ModelLayer.General_Models;
 using ModelLayer.Structural_Interfaces;
@@ -11,7 +12,7 @@ namespace DataLayer.Repository
         IDataBase dataBase;
         public UserRepository()
         {
-            dataBase = new DataBase.DataBase();
+            dataBase = new DataBase.DataBase(DataAccessFactory.GetDataBaseErrorLogger());
         }
 
         public IUserWithPassWord GetUserByUserName(string _userName)

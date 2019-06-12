@@ -15,7 +15,7 @@ namespace DataAccessLayer.Repository
 
         public RiddleRepository()
         {
-            dataBase = new DataBase();
+            dataBase = new DataBase(DataAccessFactory.GetDataBaseErrorLogger());
         }
         public IEnumerable<IRiddle> GetRiddlesByCategory(string _categoryName)
         {

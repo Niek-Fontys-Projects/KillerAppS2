@@ -5,25 +5,26 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
 namespace DataLayer.DataBase
 {
-    public class DataBase : IDataBase
+    internal class DataBase : IDataBase
     {
-        private MySqlConnection connection;
-        private MySqlDataAdapter adapter;
+        private IDbConnection connection;
+        private IDbDataAdapter adapter;
         private IQueryBuilderWithQuery queryBuilder;
         private IDataBaseErrorLogger errorLogger;
 
-        public DataBase()
+        internal DataBase(IDataBaseErrorLogger _errorLogger)
         {
             connection = new MySqlConnection("server=localhost; database=s2riddle#4; Uid=root; password=;");
             queryBuilder = new QueryBuilder.QueryBuilder(new MySQLSyntaxMaker());
             adapter = new MySqlDataAdapter();
-            errorLogger = new JSonLogger();
+            errorLogger = _errorLogger;
         }
 
         public IQueryBuilder QueryBuilder
@@ -35,7 +36,7 @@ namespace DataLayer.DataBase
         {
             try
             {
-                MySqlCommand command = connection.CreateCommand();
+                IDbCommand command = connection.CreateCommand();
                 command.CommandText = queryBuilder.Query;
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -54,13 +55,15 @@ namespace DataLayer.DataBase
 
         public IEnumerable<T> ExecuteSelectQuery<T>(Type _instanciatedObjectType)
         {
-            DataTable table = new DataTable();
+            DataSet set = new DataSet();
             IList<T> objects = new List<T>();
-            adapter.SelectCommand = new MySqlCommand(queryBuilder.Query, connection);
+            IDbCommand command = connection.CreateCommand();
+            command.CommandText = queryBuilder.Query;
+            adapter.SelectCommand = command;
             try
             {
                 connection.Open();
-                adapter.Fill(table);
+                adapter.Fill(set);
             }
             catch (Exception e)
             {
@@ -70,14 +73,14 @@ namespace DataLayer.DataBase
             {
                 connection.Close();
             }
-            foreach (DataRow row in table.Rows)
+            foreach (DataRow row in set.Tables[0].Rows)
             {
                 T newObject = (T)Activator.CreateInstance(_instanciatedObjectType);
                 PropertyInfo[] properties = newObject.GetType().GetProperties();
                 object[] values = row.ItemArray;
                 for (int i = 0; i < values.Length; i++)
                 {
-                    properties.Where(x => x.Name == table.Columns[i].ColumnName).First().SetValue(newObject, values[i]);
+                    properties.Where(x => x.Name == set.Tables[0].Columns[i].ColumnName).First().SetValue(newObject, values[i]);
                 }
                 objects.Add(newObject);
             }
