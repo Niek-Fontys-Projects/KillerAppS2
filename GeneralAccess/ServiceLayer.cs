@@ -11,6 +11,7 @@ namespace ServiceLayer
     {
         public static void ServiceLayerConfig(this IConfiguration configuration)
         {
+            Factory.BlackListLocation = configuration["ServiceLayer:BlackListLocation"];
             configuration.DataAccessConfig();
             configuration.LogicLayerConfig();
         }

@@ -29,24 +29,28 @@
 <body>
     @foreach (var riddle in Model.Get.Riddles)
     {
-        <a>@riddle.RiddleName</a>
-        <a>@riddle.RiddleContent</a>
-        <a>@riddle.Answer</a>
-        @foreach (var category in riddle.Categories)
-        {
-            <a asp-controller="Riddle" asp-action="Category" asp-route-_categoryName="@category.CategoryName">@category.CategoryName</a>
-        }
-        @foreach (var message in riddle.Messages)
-        {
-            <a>@message.MessageContent</a>
-            <a>@message.UserName</a>
-            <a>@message.Time</a>
-        }
+        <div onclick="SetRiddleName(@riddle.RiddleName)">
+            <a>@riddle.RiddleName</a>
+            <a>@riddle.RiddleContent</a>
+            <a>@riddle.Answer</a>
+            @foreach (var category in riddle.Categories)
+            {
+                <a asp-controller="Riddle" asp-action="Category" asp-route-_categoryName="@category.CategoryName">@category.CategoryName</a>
+            }
+            @foreach (var message in riddle.Messages)
+            {
+                <a>@message.MessageContent</a>
+                <a>@message.UserName</a>
+                <a>@message.Time</a>
+            }
+        </div>
+
     }
     @using Microsoft.AspNetCore.Http;
     @if (!String.IsNullOrEmpty(Context.Session.GetString("UserID")))
     {
         <form method="post" asp-controller="Riddle" asp-action="PostMessage">
+            <input asp-for="Post.RiddleName" value="" id="riddleName" type="hidden" />
             <input asp-for="Post.RiddleName" class="form-control" />
             <input asp-for="Post.Message" class="form-control" />
             <div><input type="submit" value="Send" class="btn" /></div>
@@ -54,3 +58,10 @@
     }
 </body>
 </html>
+
+<script>
+    function SetRiddleName(name) {
+        var rName = document.getElementById("riddleName");
+        rName.value = name;
+    }
+</script>

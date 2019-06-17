@@ -11,9 +11,11 @@ namespace ServiceLayer.Handlers
     public class RiddleHandler
     {
         IRiddleRepo riddleRepo;
+        IWordFilter wordFilter;
         public RiddleHandler()
         {
             riddleRepo = Factory.GetRiddleRepo();
+            wordFilter = Factory.GetWordFilter();
         }
 
         public RiddlePageModel GetRiddlesFromCategory(string _category)
@@ -23,8 +25,7 @@ namespace ServiceLayer.Handlers
 
         public RiddlePageModel PostMessage(RiddlePageModel _rpm)
         {
-            //filter message
-            riddleRepo.PostMessage(_rpm.Post.UserID, _rpm.Post.RiddleName, _rpm.Post.Message);
+            riddleRepo.PostMessage(_rpm.Post.UserID, _rpm.Post.RiddleName, wordFilter.Filter(_rpm.Post.Message));
             //update affected video
             return _rpm;
         }

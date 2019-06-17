@@ -26,8 +26,11 @@ namespace PresentationLayer.Controllers
         [HttpPost]
         public IActionResult PostMessage(RiddlePageModel _rpm)
         {
-            _rpm.Post.UserID = HttpContext.Session.GetString("UserID");
-            return View("RiddlePage", riddleHandler.PostMessage(_rpm));
+            if (ModelState.IsValid)
+            {
+                return View("RiddlePage", riddleHandler.PostMessage(_rpm));
+            }
+            return View();
         }
     }
 }

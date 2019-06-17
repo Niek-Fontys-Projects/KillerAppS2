@@ -1,13 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using ModelLayer.Structural_Interfaces;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace DataLayer.DataLogger
 {
-    internal class JSonLogger : IDataBaseErrorLogger
+    internal class JSonLogger : IDataBaseErrorLogger, ISMTPErrorLogger
     {
         private string errorLogLocation;
 
@@ -16,25 +14,43 @@ namespace DataLayer.DataLogger
             errorLogLocation = _errorLogLocation;
         }
 
-        public void LogDataBaseError(string _query, string _errorMessage, string _callStack, string _dateTime)
+        private void Write(string _section, JObject _error)
         {
-            JObject dbErrors = JObject.Parse(File.ReadAllText(errorLogLocation));
+            bool successFull = false;
+            while (!successFull)
+            {
+                try
+                {
+                    JObject dbErrors = JObject.Parse(File.ReadAllText(errorLogLocation));
+                    ((JArray)((JObject)dbErrors["errorlog"])[_section]).Add(_error);
+                    StreamWriter stream = new StreamWriter(errorLogLocation);
+                    stream.Write(JsonConvert.SerializeObject(dbErrors, Formatting.Indented));
+                    stream.Close();
+                    successFull = true;
+                }
+                catch { System.Threading.Thread.Sleep(10); }
+            }
+        }
+
+        public void LogDataBaseError(string _query, string _errorMessage, string _dateTime)
+        {
             JObject error = new JObject();
             error.Add("query", _query);
             error.Add("errormessage", _errorMessage);
-            JArray callstack = new JArray();
-            foreach(string call in _callStack.Split("\r\n"))
-            {
-                JObject jCall = new JObject();
-                jCall.Add("call", call.Replace("   ", string.Empty));
-                callstack.Add(jCall);
-            }
-            error.Add("callstack", callstack);
             error.Add("datetime", _dateTime);
-            ((JArray)dbErrors["errorlog"]).Add(error);
-            StreamWriter stream = new StreamWriter(errorLogLocation);
-            stream.Write(JsonConvert.SerializeObject(dbErrors, Formatting.Indented));
-            stream.Close();
+            Write("database", error);
+        }
+
+        public void LogSMTPError(string _client, string _fromAddress, string _subject, string _content, string _toAddress, string _time)
+        {
+            JObject error = new JObject();
+            error.Add("client", _client);
+            error.Add("fromaddress", _fromAddress);
+            error.Add("subject", _subject);
+            error.Add("content", _content);
+            error.Add("toaddress", _toAddress);
+            error.Add("time", _time);
+            Write("smtpclient", error);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using DataAccessLayer.Repository;
+using DataAccessLayer.TextReader;
+using LogicLayer.Filter;
 using LogicLayer.Hasher;
 using LogicLayer.LogInValidator;
 using LogicLayer.MailSender;
@@ -38,6 +40,18 @@ namespace ServiceLayer
         internal static IMailSender GetMailSender()
         {
             return new SMTPSender();
+        }
+        
+        internal static string BlackListLocation;
+        internal static IWordFilter GetWordFilter()
+        {
+            ITextAccessor textAccessor = GetTextAccessor();
+            return new WordFilter(textAccessor.GetLines(BlackListLocation));
+        }
+
+        private static ITextAccessor GetTextAccessor()
+        {
+            return new TextAccessor();
         }
     }
 }
