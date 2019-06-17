@@ -22,15 +22,12 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-    <script>
-
-    </script>
 </head>
 <body>
     @foreach (var riddle in Model.Get.Riddles)
     {
-        <div onclick="SetRiddleName(@riddle.RiddleName)">
-            <a>@riddle.RiddleName</a>
+        <div>
+            <a onclick="SetRiddleName('@riddle.RiddleName')">@riddle.RiddleName</a>
             <a>@riddle.RiddleContent</a>
             <a>@riddle.Answer</a>
             @foreach (var category in riddle.Categories)
@@ -50,8 +47,8 @@
     @if (!String.IsNullOrEmpty(Context.Session.GetString("UserID")))
     {
         <form method="post" asp-controller="Riddle" asp-action="PostMessage">
+            <input asp-for="Post.UserID" value="@Context.Session.GetString("UserID")" type="hidden" />
             <input asp-for="Post.RiddleName" value="" id="riddleName" type="hidden" />
-            <input asp-for="Post.RiddleName" class="form-control" />
             <input asp-for="Post.Message" class="form-control" />
             <div><input type="submit" value="Send" class="btn" /></div>
         </form>
@@ -60,8 +57,8 @@
 </html>
 
 <script>
-    function SetRiddleName(name) {
-        var rName = document.getElementById("riddleName");
-        rName.value = name;
+    function SetRiddleName(_name)
+    {
+        document.getElementById("riddleName").value = _name;
     }
 </script>

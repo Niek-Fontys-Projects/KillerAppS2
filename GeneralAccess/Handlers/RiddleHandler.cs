@@ -23,11 +23,9 @@ namespace ServiceLayer.Handlers
             return new RiddlePageModel() { Get = new RiddlesResultModel() { Riddles = riddleRepo.GetRiddlesByCategory(_category) } };
         }
 
-        public RiddlePageModel PostMessage(RiddlePageModel _rpm)
+        public void PostMessage(RiddlePageModel _rpm)
         {
             riddleRepo.PostMessage(_rpm.Post.UserID, _rpm.Post.RiddleName, wordFilter.Filter(_rpm.Post.Message));
-            //update affected video
-            return _rpm;
         }
     }
 }

@@ -28,9 +28,9 @@ namespace PresentationLayer.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View("RiddlePage", riddleHandler.PostMessage(_rpm));
+                return Redirect(Url.Action("Index", "Home"));
             }
-            return View();
+            return Redirect(Url.Action("Index", "Home"));
         }
     }
 }
