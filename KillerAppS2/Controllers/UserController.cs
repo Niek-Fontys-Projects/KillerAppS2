@@ -27,7 +27,7 @@ namespace PresentationLayer.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (userHandler.Adduser(_aum))
+                if (userHandler.Adduser(_aum) && _aum.PasswordRepeat == _aum.Password)
                 {
                     return View("LogIn");
                 }
