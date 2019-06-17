@@ -1,4 +1,5 @@
 ﻿using DataLayer.DataBase;
+using DataLayer.DataBase.QueryBuilder;
 using DataLayer.DataBase.SyntaxMaker;
 using DataLayer.DataLogger;
 using MySql.Data.MySqlClient;
@@ -15,12 +16,17 @@ namespace DataAccessLayer
         internal static IReadOnlyDictionary<Type, string> ColumnPrefixes;
         internal static IDataBase GetDataBase()
         {
-            return new DataBase(GetDbConnection(), GetSyntaxMaker(), GetDataAdapter(), GetDataBaseErrorLogger());
+            return new DataBase(GetDbConnection(), GetQueryBuilder(), GetDataAdapter(), GetDataBaseErrorLogger());
         }
 
         private static IDbDataAdapter GetDataAdapter()
         {
             return new MySqlDataAdapter();
+        }
+
+        private static IQueryBuilderWithQuery GetQueryBuilder()
+        {
+            return new QueryBuilder(GetSyntaxMaker());
         }
 
         private static ISyntaxMaker GetSyntaxMaker()

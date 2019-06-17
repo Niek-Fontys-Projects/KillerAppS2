@@ -17,10 +17,10 @@ namespace DataLayer.DataBase
         private IQueryBuilderWithQuery queryBuilder;
         private IDataBaseErrorLogger errorLogger;
 
-        internal DataBase(IDbConnection _connection, ISyntaxMaker _syntaxMaker, IDbDataAdapter _adapter, IDataBaseErrorLogger _errorLogger)
+        internal DataBase(IDbConnection _connection, IQueryBuilderWithQuery _queryBuilder, IDbDataAdapter _adapter, IDataBaseErrorLogger _errorLogger)
         {
             connection = _connection;
-            queryBuilder = new QueryBuilder.QueryBuilder(_syntaxMaker);
+            queryBuilder = _queryBuilder;
             adapter = _adapter;
             errorLogger = _errorLogger;
         }
