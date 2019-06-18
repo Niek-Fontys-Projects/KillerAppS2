@@ -5,9 +5,9 @@ using System.Net.Mail;
 
 namespace LogicLayer.LogInValidator
 {
-    public class Validator : IUserValidator
+    internal class Validator : IUserValidator
     {
-        public Validator()
+        internal Validator()
         {
 
         }

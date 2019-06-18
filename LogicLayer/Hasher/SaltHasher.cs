@@ -6,12 +6,12 @@ using System.Security.Cryptography;
 
 namespace LogicLayer.Hasher
 {
-    public class SaltHasher : ISaltHasher
+    internal class SaltHasher : ISaltHasher
     {
         private RNGCryptoServiceProvider rngCryptoServiceProvider;
-        public SaltHasher()
+        internal SaltHasher(RNGCryptoServiceProvider _rngCryptoServiceProvider)
         {
-            rngCryptoServiceProvider = Factory.GetCryptoServiceProvider();
+            rngCryptoServiceProvider = _rngCryptoServiceProvider;
         }
 
         public IObjectPair<string, string> HashNewSalt(string _passWord)

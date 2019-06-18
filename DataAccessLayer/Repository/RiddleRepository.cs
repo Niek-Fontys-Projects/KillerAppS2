@@ -6,13 +6,12 @@ using System.Collections.Generic;
 
 namespace DataAccessLayer.Repository
 {
-    public class RiddleRepository : IRiddleRepo
+    internal class RiddleRepository : IRiddleRepo
     {
-        IDataBase dataBase;
-
-        public RiddleRepository()
+        private IDataBase dataBase;
+        internal RiddleRepository(IDataBase _dataBase)
         {
-            dataBase = DataLayerBuilder.GetDataBase();
+            dataBase = _dataBase;
         }
         public IEnumerable<IRiddle> GetRiddlesByCategory(string _categoryName)
         {

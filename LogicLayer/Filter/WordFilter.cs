@@ -5,11 +5,11 @@ using System.Text;
 
 namespace LogicLayer.Filter
 {
-    public class WordFilter : IWordFilter
+    internal class WordFilter : IWordFilter
     {
         private readonly IEnumerable<string> blackList;
 
-        public WordFilter(IEnumerable<string> _blackList)
+        internal WordFilter(IEnumerable<string> _blackList)
         {
             blackList = _blackList;
         }

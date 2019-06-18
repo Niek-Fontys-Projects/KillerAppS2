@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.TextReader;
+﻿using DataAccessLayer.Repository;
+using DataAccessLayer.TextReader;
 using DataLayer.DataBase;
 using DataLayer.DataBase.QueryBuilder;
 using DataLayer.DataBase.SyntaxMaker;
@@ -15,7 +16,7 @@ namespace DataAccessLayer
 {
     public class DataLayerBuilder
     {
-        IConfiguration configuration;
+        private IConfiguration configuration;
 
         public DataLayerBuilder(IConfiguration _configuration)
         {
@@ -66,7 +67,20 @@ namespace DataAccessLayer
         #endregion
 
         #region Repository
-        public 
+        public ICategoryRepo GetCategoryRepo()
+        {
+            return new CategoryRepository(GetDataBase());
+        }
+
+        public IRiddleRepo GetRiddleRepo()
+        {
+            return new RiddleRepository(GetDataBase());
+        }
+
+        public IUserRepo GetUserRepo()
+        {
+            return new UserRepository(GetDataBase());
+        }
         #endregion
     }
 }

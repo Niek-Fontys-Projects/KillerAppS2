@@ -14,8 +14,8 @@ namespace ServiceLayer.Handlers
         IWordFilter wordFilter;
         public RiddleHandler()
         {
-            riddleRepo = Factory.GetRiddleRepo();
-            wordFilter = Factory.GetWordFilter();
+            riddleRepo = ServiceLayerBuilder.GetRiddleRepo();
+            wordFilter = ServiceLayerBuilder.GetWordFilter();
         }
 
         public RiddlePageModel GetRiddlesFromCategory(string _category)

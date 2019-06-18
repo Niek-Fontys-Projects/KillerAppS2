@@ -18,10 +18,10 @@ namespace ServiceLayer.Handlers
 
         public UserHandler()
         {
-            userValidator = Factory.GetUserValidator();
-            userRepo = Factory.GetUserRepo();
-            hasher = Factory.GetHasher();
-            mailSender = Factory.GetMailSender();
+            userValidator = ServiceLayerBuilder.GetUserValidator();
+            userRepo = ServiceLayerBuilder.GetUserRepo();
+            hasher = ServiceLayerBuilder.GetHasher();
+            mailSender = ServiceLayerBuilder.GetMailSender();
         }
 
         public IObjectPair<LogInResult, IUser> ValidateLoginAttempt(LogInModel _lim)

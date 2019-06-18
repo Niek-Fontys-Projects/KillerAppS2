@@ -7,12 +7,12 @@ using System.Linq;
 
 namespace DataAccessLayer.Repository
 {
-    public class UserRepository : IUserRepo
+    internal class UserRepository : IUserRepo
     {
         IDataBase dataBase;
-        public UserRepository()
+        internal UserRepository(IDataBase _dataBase)
         {
-            dataBase = DataLayerBuilder.GetDataBase();
+            dataBase = _dataBase;
         }
 
         public IUserWithPassWord GetUserByUserName(string _userName)

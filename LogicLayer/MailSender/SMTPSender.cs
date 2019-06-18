@@ -3,15 +3,15 @@ using System.Net.Mail;
 
 namespace LogicLayer.MailSender
 {
-    public class SMTPSender : IMailSender
+    internal class SMTPSender : IMailSender
     {
         private SmtpClient client;
         private MailMessage mail;
         private MailAddress fromAddress;
-        public SMTPSender()
+        internal SMTPSender(SmtpClient _client, MailAddress _fromAddress)
         {
-            client = Factory.GetSmtpClient();
-            fromAddress = Factory.GetFromAddress();
+            client = _client;
+            fromAddress = _fromAddress;
             //remove for school host
             client.Credentials = new System.Net.NetworkCredential("riddleform.s27@gmail.com", "#Riddler2");
             client.EnableSsl = true;
@@ -21,7 +21,7 @@ namespace LogicLayer.MailSender
 
         public void NewMail()
         {
-            mail = Factory.GetMailMessage();
+            mail = new MailMessage();
         }
         public void SendMail()
         {

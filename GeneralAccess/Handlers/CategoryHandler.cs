@@ -13,7 +13,7 @@ namespace ServiceLayer.Handlers
 
         public CategoryHandler()
         {
-            categoryRepo = Factory.GetCategoryRepo();
+            categoryRepo = ServiceLayerBuilder.GetCategoryRepo();
         }
 
         public CatrgoriesModel GetAllCategories()

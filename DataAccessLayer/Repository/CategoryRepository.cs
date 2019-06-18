@@ -6,13 +6,13 @@ using System.Collections.Generic;
 
 namespace DataAccessLayer.Repository
 {
-    public class CategoryRepository : ICategoryRepo
+    internal class CategoryRepository : ICategoryRepo
     {
-        IDataBase dataBase;
+        private IDataBase dataBase;
 
-        public CategoryRepository()
+        internal CategoryRepository(IDataBase _dataBase)
         {
-            dataBase = DataLayerBuilder.GetDataBase();
+            dataBase = _dataBase;
         }
 
         public IEnumerable<ICategory> GetAllCategories()
