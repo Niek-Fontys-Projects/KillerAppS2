@@ -9,13 +9,13 @@ namespace DataAccessLayer
     {
         public static void DataAccessConfig(this IConfiguration configuration)
         {
-            Factory.ConnectionString = configuration["DataLayer:ConnectionString"];
-            Factory.ColumnPrefixes = new Dictionary<Type, string>()
+            DataLayerBuilder.ConnectionString = configuration["DataLayer:ConnectionString"];
+            DataLayerBuilder.ColumnPrefixes = new Dictionary<Type, string>()
             {
                 { typeof(IUserWithPassWord), configuration["DataLayer:DataBaseColumns:User"]    },
                 { typeof(IMessage)         , configuration["DataLayer:DataBaseColumns:Message"] }
             };
-            Factory.ErrorLogLocation = configuration["DataLayer:DataErrorLog"];
+            DataLayerBuilder.ErrorLogLocation = configuration["DataLayer:DataErrorLog"];
         }
     }
 }

@@ -12,7 +12,7 @@ namespace DataAccessLayer.Repository
 
         public RiddleRepository()
         {
-            dataBase = Factory.GetDataBase();
+            dataBase = DataLayerBuilder.GetDataBase();
         }
         public IEnumerable<IRiddle> GetRiddlesByCategory(string _categoryName)
         {

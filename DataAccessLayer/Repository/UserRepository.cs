@@ -12,7 +12,7 @@ namespace DataAccessLayer.Repository
         IDataBase dataBase;
         public UserRepository()
         {
-            dataBase = Factory.GetDataBase();
+            dataBase = DataLayerBuilder.GetDataBase();
         }
 
         public IUserWithPassWord GetUserByUserName(string _userName)

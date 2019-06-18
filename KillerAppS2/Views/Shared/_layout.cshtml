@@ -1,0 +1,68 @@
+﻿@model ServiceLayer.ViewModels.OutputViewModels.CatrgoriesModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        ._nav {
+            background-color: crimson;
+        }
+
+            ._nav a {
+                font-size: 20px;
+                margin: 18px 4px 4px 16px;
+                color: black;
+            }
+
+                ._nav a:hover {
+                    background-color: chocolate;
+                }
+
+        ._categories a {
+            margin: 10px 4px 10px 4px;
+        }
+    </style>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <div class="row col-lg-12 navbar-fixed-top _nav">
+        <a asp-controller="Home" asp-action="Index">RiddleForm</a>
+        @using Microsoft.AspNetCore.Http;
+        @if (String.IsNullOrEmpty(Context.Session.GetString("UserID")))
+        {
+            <a asp-controller="User" asp-action="LogIn">LogIn</a>
+        }
+        else
+        {
+            <a>@Context.Session.GetString("UserName")</a>
+            <a asp-controller="User" asp-action="LogOut">LogOut</a>
+        }
+    </div>
+    <div class="col-sm-10 _categories" style="margin: auto auto auto 16px; border: 2px solid black; border-radius: 5px 5px; width: 120px;">
+        @foreach (var category in Model.Categories)
+        {
+            <div class="row">
+                <a asp-controller="Riddle" asp-action="Category" asp-route-_categoryName="@category.CategoryName">@category.CategoryName</a>
+            </div>
+        }
+    </div>
+    <div class="col-sm-10">
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -56,5 +56,11 @@ namespace PresentationLayer.Controllers
         {
             return View();
         }
+
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            return View();
+        }
     }
 }

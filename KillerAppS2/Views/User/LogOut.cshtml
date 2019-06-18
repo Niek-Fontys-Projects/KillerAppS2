@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+    </style>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <div style="display:flex;justify-content:center;align-items:center;">
+        <div>
+            <h2 class="row">Logged out</h2>
+            <h3 class="row">You will be redirected to the home page in: <span id="refresh">3</span></h3>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+window.onload = function(){
+
+(function(){
+  var counter = 3;
+
+  setInterval(function() {
+    counter--;
+    if (counter >= 0) {
+      span = document.getElementById("refresh");
+      span.innerHTML = counter;
+    }
+    if (counter === 0) {
+        clearInterval(counter);
+        var url = '@Url.Action("Index", "Home")';
+        window.location.href = url;
+        }
+
+        }, 1000);
+
+        })();
+
+    }
+</script>
