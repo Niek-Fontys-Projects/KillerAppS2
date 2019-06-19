@@ -3,6 +3,7 @@ using ModelLayer.General_Interfaces;
 using ModelLayer.General_Models;
 using ModelLayer.Structural_Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DataAccessLayer.Repository
 {
@@ -25,6 +26,12 @@ namespace DataAccessLayer.Repository
                 riddle.Categories = dataBase.ExecuteSelectQuery<ICategory>(typeof(Category));
                 dataBase.QueryBuilder.StoredProcedure("GetMessagesByRiddleName", param);
                 riddle.Messages = dataBase.ExecuteSelectQuery<IMessage>(typeof(Message));
+                foreach(IMessage message in riddle.Messages)
+                {
+                    param = new object[2] { message.MessageContent, message.Time };
+                    dataBase.QueryBuilder.StoredProcedure("GetUserOfMessage", param);
+                    message.User = dataBase.ExecuteSelectQuery<IUser>(typeof(User)).First();
+                }
             }
             return riddles;
         }

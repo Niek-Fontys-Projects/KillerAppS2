@@ -4,7 +4,7 @@ namespace ModelLayer.General_Interfaces
 {
     public interface IMessage
     {
-        IUser User { get; }
+        IUser User { get; set;  }
         string MessageContent { get; }
         string Time { get; }
     }
