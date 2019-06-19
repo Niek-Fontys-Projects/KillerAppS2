@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ServiceLayer;
 using ServiceLayer.Handlers;
 using ServiceLayer.ViewModels;
 
@@ -13,9 +14,9 @@ namespace PresentationLayer.Controllers
     {
         RiddleHandler riddleHandler;
 
-        public RiddleController()
+        public RiddleController(ServiceLayerBuilder serviceLayerBuilder)
         {
-            riddleHandler = new RiddleHandler();
+            riddleHandler = serviceLayerBuilder.GetRiddleHandler();
         }
 
         public IActionResult Category(string _categoryName)

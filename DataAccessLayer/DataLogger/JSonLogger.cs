@@ -9,7 +9,7 @@ namespace DataLayer.DataLogger
     {
         private string errorLogLocation;
 
-        public JSonLogger(string _errorLogLocation)
+        internal JSonLogger(string _errorLogLocation)
         {
             errorLogLocation = _errorLogLocation;
         }

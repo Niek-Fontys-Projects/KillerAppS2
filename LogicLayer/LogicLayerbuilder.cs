@@ -12,11 +12,11 @@ using System.Text;
 
 namespace LogicLayer
 {
-    public class LogicLayerbuilder
+    public class LogicLayerBuilder
     {
         private IConfiguration configuration;
 
-        public LogicLayerbuilder(IConfiguration _configuration)
+        public LogicLayerBuilder(IConfiguration _configuration)
         {
             configuration = _configuration;
         }
@@ -27,7 +27,7 @@ namespace LogicLayer
             return new RNGCryptoServiceProvider();
         }
 
-        private ISaltHasher GetSaltHasher()
+        public ISaltHasher GetSaltHasher()
         {
             return new SaltHasher(GetCryptoServiceProvider());
         }

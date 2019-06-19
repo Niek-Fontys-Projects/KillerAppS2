@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServiceLayer;
 using ServiceLayer.Handlers;
 
 namespace KillerAppS2.Controllers
@@ -7,9 +8,9 @@ namespace KillerAppS2.Controllers
     {
         private CategoryHandler categoryHandler;
 
-        public HomeController()
+        public HomeController(ServiceLayerBuilder serviceLayerBuilder)
         {
-            categoryHandler = new CategoryHandler();
+            categoryHandler = serviceLayerBuilder.GetCategoryHandler();
         }
         
         public IActionResult Index()

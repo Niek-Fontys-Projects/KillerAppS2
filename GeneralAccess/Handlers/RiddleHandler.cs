@@ -12,10 +12,10 @@ namespace ServiceLayer.Handlers
     {
         IRiddleRepo riddleRepo;
         IWordFilter wordFilter;
-        public RiddleHandler()
+        public RiddleHandler(IRiddleRepo _riddleRepo, IWordFilter _wordFilter)
         {
-            riddleRepo = ServiceLayerBuilder.GetRiddleRepo();
-            wordFilter = ServiceLayerBuilder.GetWordFilter();
+            riddleRepo = _riddleRepo;
+            wordFilter = _wordFilter;
         }
 
         public RiddlePageModel GetRiddlesFromCategory(string _category)

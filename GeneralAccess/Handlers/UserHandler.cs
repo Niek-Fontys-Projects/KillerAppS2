@@ -16,12 +16,12 @@ namespace ServiceLayer.Handlers
         private readonly ISaltHasher hasher;
         private readonly IMailSender mailSender;
 
-        public UserHandler()
+        internal UserHandler(IUserValidator _userValidator, IUserRepo _userRepo, ISaltHasher _hasher, IMailSender _mailSender)
         {
-            userValidator = ServiceLayerBuilder.GetUserValidator();
-            userRepo = ServiceLayerBuilder.GetUserRepo();
-            hasher = ServiceLayerBuilder.GetHasher();
-            mailSender = ServiceLayerBuilder.GetMailSender();
+            userValidator = _userValidator;
+            userRepo = _userRepo;
+            hasher = _hasher;
+            mailSender = _mailSender;
         }
 
         public IObjectPair<LogInResult, IUser> ValidateLoginAttempt(LogInModel _lim)

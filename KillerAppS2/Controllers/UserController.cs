@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ServiceLayer;
 using ServiceLayer.Handlers;
 using ServiceLayer.ViewModels.InputViewModels;
 
@@ -10,10 +11,10 @@ namespace PresentationLayer.Controllers
         private CategoryHandler categoryHandler;
         private UserHandler userHandler;
 
-        public UserController()
+        public UserController(ServiceLayerBuilder serviceLayerBuilder)
         {
-            userHandler = new UserHandler();
-            categoryHandler = new CategoryHandler();
+            userHandler = serviceLayerBuilder.GetUserHandler();
+            categoryHandler = serviceLayerBuilder.GetCategoryHandler();
         }
 
         [HttpGet]

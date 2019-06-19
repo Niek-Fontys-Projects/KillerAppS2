@@ -4,9 +4,9 @@ using System.IO;
 
 namespace DataAccessLayer.TextReader
 {
-    public class TextAccessor : ITextAccessor
+    internal class TextAccessor : ITextAccessor
     {
-        public TextAccessor()
+        internal TextAccessor()
         {
 
         }

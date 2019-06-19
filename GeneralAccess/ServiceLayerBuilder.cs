@@ -1,23 +1,27 @@
 ﻿using DataAccessLayer;
 using DataAccessLayer.Repository;
 using DataAccessLayer.TextReader;
+using LogicLayer;
 using LogicLayer.Filter;
 using LogicLayer.Hasher;
 using LogicLayer.LogInValidator;
 using LogicLayer.MailSender;
 using Microsoft.Extensions.Configuration;
 using ModelLayer.Structural_Interfaces;
+using ServiceLayer.Handlers;
 
 namespace ServiceLayer
 {
-    internal class ServiceLayerBuilder
+    public class ServiceLayerBuilder
     {
         private IConfiguration configuration;
         private DataLayerBuilder dataBuilder;
+        private LogicLayerBuilder logicBuilder;
         public ServiceLayerBuilder(IConfiguration _configuration)
         {
             configuration = _configuration;
             dataBuilder = new DataLayerBuilder(_configuration);
+            logicBuilder = new LogicLayerBuilder(_configuration);
         }
 
         #region Repository
@@ -37,31 +41,49 @@ namespace ServiceLayer
         }
         #endregion
 
-        internal IUserValidator GetUserValidator()
+        #region Logic
+        private IUserValidator GetUserValidator()
         {
-            return new Validator();
+            return logicBuilder.GetUserValidator();
         }
 
-        internal ISaltHasher GetHasher()
+        private ISaltHasher GetHasher()
         {
-            return new SaltHasher();
+            return logicBuilder.GetSaltHasher();
         }
 
-        internal IMailSender GetMailSender()
+        private IMailSender GetMailSender()
         {
-            return new SMTPSender();
+            return logicBuilder.GetMailSender();
         }
-        
-        internal string BlackListLocation;
-        internal IWordFilter GetWordFilter()
+
+        private IWordFilter GetWordFilter()
         {
             ITextAccessor textAccessor = GetTextAccessor();
-            return new WordFilter(textAccessor.GetLines(BlackListLocation));
+            return logicBuilder.GetWordFilter(textAccessor.GetLines(configuration["ServiceLayer:BlackListLocation"]));
         }
 
         private ITextAccessor GetTextAccessor()
         {
-            return new TextAccessor();
+            return dataBuilder.GetTextAccessor();
         }
+        #endregion
+
+        #region Handlers
+        public CategoryHandler GetCategoryHandler()
+        {
+            return new CategoryHandler(GetCategoryRepo());
+        }
+
+        public UserHandler GetUserHandler()
+        {
+            return new UserHandler(GetUserValidator(), GetUserRepo(), GetHasher(), GetMailSender());
+        }
+
+        public RiddleHandler GetRiddleHandler()
+        {
+            return new RiddleHandler(GetRiddleRepo(), GetWordFilter());
+        }
+        #endregion
     }
 }

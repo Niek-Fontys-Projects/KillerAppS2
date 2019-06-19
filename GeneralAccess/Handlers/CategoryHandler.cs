@@ -11,9 +11,9 @@ namespace ServiceLayer.Handlers
     {
         private readonly ICategoryRepo categoryRepo;
 
-        public CategoryHandler()
+        public CategoryHandler(ICategoryRepo _categoryRepo)
         {
-            categoryRepo = ServiceLayerBuilder.GetCategoryRepo();
+            categoryRepo = _categoryRepo;
         }
 
         public CatrgoriesModel GetAllCategories()
