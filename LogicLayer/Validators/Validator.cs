@@ -1,5 +1,4 @@
-﻿using LogicLayer.Hasher;
-using ModelLayer.General_Interfaces;
+﻿using ModelLayer.General_Interfaces;
 using ModelLayer.Structural_Interfaces;
 using System.Net.Mail;
 

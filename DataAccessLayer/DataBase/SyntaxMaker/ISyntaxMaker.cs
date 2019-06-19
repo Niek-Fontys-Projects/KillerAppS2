@@ -3,7 +3,7 @@ using System;
 
 namespace DataLayer.DataBase.SyntaxMaker
 {
-    public interface ISyntaxMaker
+    internal interface ISyntaxMaker
     {
         string Insert(Type _type, string _params);
         string StoredProcedure(string _procedureName, string _params);

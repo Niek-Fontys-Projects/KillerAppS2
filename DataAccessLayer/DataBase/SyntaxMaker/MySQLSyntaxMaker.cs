@@ -1,6 +1,4 @@
-﻿using ModelLayer.General_Interfaces;
-using ModelLayer.General_Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace DataLayer.DataBase.SyntaxMaker
@@ -9,7 +7,7 @@ namespace DataLayer.DataBase.SyntaxMaker
     {
         private IReadOnlyDictionary<Type, string> columnPreFix;
 
-        public MySQLSyntaxMaker(IReadOnlyDictionary<Type, string> _columnPreFix)
+        internal MySQLSyntaxMaker(IReadOnlyDictionary<Type, string> _columnPreFix)
         {
             columnPreFix = _columnPreFix;
         }

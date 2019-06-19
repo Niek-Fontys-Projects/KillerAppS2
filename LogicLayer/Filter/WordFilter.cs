@@ -16,12 +16,11 @@ namespace LogicLayer.Filter
 
         public string Filter(string _text)
         {
-            string text = string.Empty;
             foreach (string word in blackList)
             {
-                _text.Replace(word, "***");
+                _text = _text.Replace(word, "***");
             }
-            return text;
+            return _text;
         }
     }
 }
