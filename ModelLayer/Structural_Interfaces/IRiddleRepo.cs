@@ -9,5 +9,6 @@ namespace ModelLayer.Structural_Interfaces
     {
         IEnumerable<IRiddle> GetRiddlesByCategory(string _categoryName);
         void PostMessage(string _userID, string _riddleName, string _message);
+        IEnumerable<IRiddle> GetUnsolvedRiddles();
     }
 }

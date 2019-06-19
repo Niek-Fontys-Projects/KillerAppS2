@@ -25,6 +25,11 @@ namespace IntegrationTests.ReplacementClasses
             };
         }
 
+        public IEnumerable<IRiddle> GetUnsolvedRiddles()
+        {
+            return GetRiddlesByCategory("");
+        }
+
         public void PostMessage(string _userID, string _riddleName, string _message)
         {
 

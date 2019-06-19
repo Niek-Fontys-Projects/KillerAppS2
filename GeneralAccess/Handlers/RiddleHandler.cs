@@ -23,5 +23,10 @@ namespace ServiceLayer.Handlers
         {
             riddleRepo.PostMessage(_rpm.UserID, _rpm.RiddleName, wordFilter.Filter(_rpm.Message));
         }
+
+        public RiddlesResultModel Get5UnsolvedRiddles()
+        {
+            return new RiddlesResultModel() { Riddles = riddleRepo.GetUnsolvedRiddles() };
+        }
     }
 }

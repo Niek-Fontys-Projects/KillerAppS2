@@ -1,4 +1,4 @@
-﻿@model ServiceLayer.ViewModels.OutputViewModels.CategoriesModel
+﻿@model PresentationLayer.ViewModels.StartPageModel
 
 @{
     Layout = "~/Views/Shared/_layout.cshtml";
@@ -16,12 +16,35 @@
 </head>
 <body>
     <div class="col-sm-10 _categories" style="margin: auto auto auto 16px; border: 2px solid black; border-radius: 5px 5px; width: 120px;">
-        @foreach (var category in Model.Categories)
+        @foreach (var category in Model.Categories.Categories)
         {
             <div class="row">
                 <a asp-controller="Riddle" asp-action="Category" asp-route-_categoryName="@category.CategoryName">@category.CategoryName</a>
             </div>
         }
     </div>
+    <div class="col-sm-10">
+        <div class="row _unsolvedRiddle">1</div>
+        <div class="row _unsolvedRiddle">2</div>
+        <div class="row _unsolvedRiddle">3</div>
+        <div class="row _unsolvedRiddle">4</div>
+    </div>
 </body>
 </html>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+    var x = document.getElementsByClassName("_unsolvedRiddle");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}
+  x[myIndex-1].style.display = "block";
+  setTimeout(carousel, 5000);
+}
+</script>

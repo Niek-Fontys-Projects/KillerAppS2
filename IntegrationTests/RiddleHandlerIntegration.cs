@@ -22,6 +22,11 @@ namespace IntegrationTests
             Assert.AreEqual("Riddle1", model.Riddles.First().RiddleName);
             Assert.AreEqual(1, model.Riddles.First().Categories.Count());
             Assert.AreEqual(1, model.Riddles.First().Messages.Count());
+            model = handler.Get5UnsolvedRiddles();
+            Assert.AreEqual("creator", model.Riddles.First().User.UserName);
+            Assert.AreEqual("Riddle1", model.Riddles.First().RiddleName);
+            Assert.AreEqual(1, model.Riddles.First().Categories.Count());
+            Assert.AreEqual(1, model.Riddles.First().Messages.Count());
         }
     }
 }
