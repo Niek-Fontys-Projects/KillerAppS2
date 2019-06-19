@@ -1,10 +1,6 @@
-﻿using DataAccessLayer.Repository;
-using ModelLayer.Structural_Interfaces;
-using ServiceLayer.ViewModels;
+﻿using ModelLayer.Structural_Interfaces;
+using ServiceLayer.ViewModels.InputViewModels;
 using ServiceLayer.ViewModels.OutputViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ServiceLayer.Handlers
 {
@@ -18,14 +14,14 @@ namespace ServiceLayer.Handlers
             wordFilter = _wordFilter;
         }
 
-        public RiddlePageModel GetRiddlesFromCategory(string _category)
+        public RiddlesResultModel GetRiddlesFromCategory(string _category)
         {
-            return new RiddlePageModel() { Get = new RiddlesResultModel() { Riddles = riddleRepo.GetRiddlesByCategory(_category) } };
+            return new RiddlesResultModel() { Riddles = riddleRepo.GetRiddlesByCategory(_category) };
         }
 
-        public void PostMessage(RiddlePageModel _rpm)
+        public void PostMessage(AddMessageModel _rpm)
         {
-            riddleRepo.PostMessage(_rpm.Post.UserID, _rpm.Post.RiddleName, wordFilter.Filter(_rpm.Post.Message));
+            riddleRepo.PostMessage(_rpm.UserID, _rpm.RiddleName, wordFilter.Filter(_rpm.Message));
         }
     }
 }

@@ -16,9 +16,9 @@ namespace ServiceLayer.Handlers
             categoryRepo = _categoryRepo;
         }
 
-        public CatrgoriesModel GetAllCategories()
+        public CategoriesModel GetAllCategories()
         {
-            return new CatrgoriesModel()
+            return new CategoriesModel()
             {
                 Categories = categoryRepo.GetAllCategories()
             };

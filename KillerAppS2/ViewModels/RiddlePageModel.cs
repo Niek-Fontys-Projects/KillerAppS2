@@ -1,11 +1,8 @@
 ﻿using ServiceLayer.ViewModels.InputViewModels;
 using ServiceLayer.ViewModels.OutputViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ServiceLayer.ViewModels
-{
+namespace KillerAppS2.ViewModel
+{ 
     public class RiddlePageModel
     {
         private AddMessageModel post;

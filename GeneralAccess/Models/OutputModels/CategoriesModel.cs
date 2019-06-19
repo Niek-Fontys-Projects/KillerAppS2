@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ServiceLayer.ViewModels.OutputViewModels
 {
-    public class CatrgoriesModel
+    public class CategoriesModel
     {
         public IEnumerable<ICategory> Categories { get; internal set; }
     }
