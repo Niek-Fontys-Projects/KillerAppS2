@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KillerAppS2.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer;
@@ -12,16 +13,18 @@ namespace PresentationLayer.Controllers
 {
     public class RiddleController : Controller
     {
-        RiddleHandler riddleHandler;
+        private RiddleHandler riddleHandler;
+        private CategoryHandler categoryHandler;
 
         public RiddleController(ServiceLayerBuilder serviceLayerBuilder)
         {
             riddleHandler = serviceLayerBuilder.GetRiddleHandler();
+            categoryHandler = serviceLayerBuilder.GetCategoryHandler();
         }
 
         public IActionResult Category(string _categoryName)
         {
-            return View("RiddlePage", riddleHandler.GetRiddlesFromCategory(_categoryName));
+            return View("RiddlePage", new RiddlePageModel() { Get = riddleHandler.GetRiddlesFromCategory(_categoryName), Categories = categoryHandler.GetAllCategories() });
         }
 
         [HttpPost]

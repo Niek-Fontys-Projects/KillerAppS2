@@ -11,7 +11,7 @@ namespace ServiceLayer.Handlers
     {
         private readonly ICategoryRepo categoryRepo;
 
-        public CategoryHandler(ICategoryRepo _categoryRepo)
+        internal CategoryHandler(ICategoryRepo _categoryRepo)
         {
             categoryRepo = _categoryRepo;
         }

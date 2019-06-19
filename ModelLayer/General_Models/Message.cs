@@ -7,21 +7,20 @@ namespace ModelLayer.General_Models
 {
     public class Message : IMessage
     {
-        private string userName;
+        private IUser user;
         private string time;
         private string messageContent;
 
         public Message()
         {
-            userName = String.Empty;
             time = String.Empty;
             messageContent = String.Empty;
         }
 
-        public string UserName
+        public IUser User
         {
-            get { return userName; }
-            set { userName = value; }
+            get { return user; }
+            set { user = value; }
         }
 
         public string Time

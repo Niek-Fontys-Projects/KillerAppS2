@@ -1,29 +1,28 @@
-﻿@model ServiceLayer.ViewModels.RiddlePageModel
+﻿@model KillerAppS2.ViewModel.RiddlePageModel
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_layout.cshtml";
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
     <style>
+        ._categories a {
+            margin: 10px 4px 10px 4px;
+        }
     </style>
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
 </head>
 <body>
+    <div class="col-sm-10 _categories" style="margin: auto auto auto 16px; border: 2px solid black; border-radius: 5px 5px; width: 120px;">
+        @foreach (var category in Model.Categories.Categories)
+        {
+            <div class="row">
+                <a asp-controller="Riddle" asp-action="Category" asp-route-_categoryName="@category.CategoryName">@category.CategoryName</a>
+            </div>
+        }
+    </div>
     @foreach (var riddle in Model.Get.Riddles)
     {
         <div>
@@ -37,7 +36,7 @@
             @foreach (var message in riddle.Messages)
             {
                 <a>@message.MessageContent</a>
-                <a>@message.UserName</a>
+                <a>@message.User.UserName</a>
                 <a>@message.Time</a>
             }
         </div>

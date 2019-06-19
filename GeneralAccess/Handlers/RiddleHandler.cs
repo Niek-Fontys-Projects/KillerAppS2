@@ -8,7 +8,7 @@ namespace ServiceLayer.Handlers
     {
         IRiddleRepo riddleRepo;
         IWordFilter wordFilter;
-        public RiddleHandler(IRiddleRepo _riddleRepo, IWordFilter _wordFilter)
+        internal RiddleHandler(IRiddleRepo _riddleRepo, IWordFilter _wordFilter)
         {
             riddleRepo = _riddleRepo;
             wordFilter = _wordFilter;

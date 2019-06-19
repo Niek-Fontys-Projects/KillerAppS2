@@ -8,6 +8,6 @@ namespace ModelLayer.Structural_Interfaces
     public interface IUserRepo
     {
         IUserWithPassWord GetUserByUserName(string _userName);
-        bool AddUser(string _userName, string _mail, string _passWord, string _PassWordhash);
+        bool AddUser(string _userName, string _mail, string _passWord, string _passWordhash);
     }
 }

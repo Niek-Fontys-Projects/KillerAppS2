@@ -15,6 +15,11 @@
         "query": "Call GetAllCategories()",
         "errormessage": "Unable to connect to any of the specified MySQL hosts.",
         "datetime": "19/06/2019 09:58:14"
+      },
+      {
+        "query": "Call GetAllCategories()",
+        "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+        "datetime": "19/06/2019 21:25:50"
       }
     ],
     "textreader": [],
