@@ -24,27 +24,27 @@
         }
     </div>
     <div class="col-sm-10">
-        <div class="row _unsolvedRiddle">1</div>
-        <div class="row _unsolvedRiddle">2</div>
-        <div class="row _unsolvedRiddle">3</div>
-        <div class="row _unsolvedRiddle">4</div>
+        @foreach (var riddle in Model.Riddles.Riddles)
+        {
+            <div class="_unsolvedRiddle row" style="border: 2px solid black; margin: 10px 10px 10px 10px; font-size: 40px; display:flex;justify-content:center;align-items:center;">@riddle.RiddleContent</div>
+        }
     </div>
 </body>
 </html>
 
 <script>
-var myIndex = 0;
-carousel();
+    var myIndex = 0;
+    SlideShow();
 
-function carousel() {
-  var i;
-    var x = document.getElementsByClassName("_unsolvedRiddle");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}
-  x[myIndex-1].style.display = "block";
-  setTimeout(carousel, 5000);
-}
+    function SlideShow() {
+        var i;
+        var x = document.getElementsByClassName("_unsolvedRiddle");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(SlideShow, 5000);
+    }
 </script>

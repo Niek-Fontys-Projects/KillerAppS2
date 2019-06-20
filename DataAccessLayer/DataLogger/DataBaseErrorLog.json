@@ -20,6 +20,46 @@
         "query": "Call GetAllCategories()",
         "errormessage": "Unable to connect to any of the specified MySQL hosts.",
         "datetime": "19/06/2019 21:25:50"
+      },
+      {
+        "query": "Call GetAllCategories()",
+        "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+        "datetime": "20/06/2019 08:47:24"
+      },
+      {
+        "query": "Call GetUnsolvedRiddles()",
+        "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+        "datetime": "20/06/2019 08:47:25"
+      },
+      {
+        "query": "Call GetAllCategories()",
+        "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+        "datetime": "20/06/2019 13:02:15"
+      },
+      {
+        "query": "Call GetUnsolvedRiddles()",
+        "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+        "datetime": "20/06/2019 13:02:16"
+      },
+      {
+        "query": "Call GetAllCategories()",
+        "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+        "datetime": "20/06/2019 13:07:07"
+      },
+      {
+        "query": "Call GetUnsolvedRiddles()",
+        "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+        "datetime": "20/06/2019 13:07:08"
+      },
+      {
+        "query": "Call GetAllCategories()",
+        "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+        "datetime": "20/06/2019 18:07:06"
+      },
+      {
+        "query": "Call GetUnsolvedRiddles()",
+        "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+        "datetime": "20/06/2019 18:07:07"
       }
     ],
     "textreader": [],

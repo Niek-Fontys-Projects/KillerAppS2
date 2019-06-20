@@ -46,7 +46,7 @@ namespace PresentationLayer.Controllers
                 {
                     HttpContext.Session.SetString("UserID", resultPair.Object2.UserID);
                     HttpContext.Session.SetString("UserName", resultPair.Object2.UserName);
-                    return View("../Home/StartPage", categoryHandler.GetAllCategories());
+                    return Redirect(Url.Action("Index", "Home"));
                 }
             }
             return View();

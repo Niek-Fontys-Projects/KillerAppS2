@@ -7,28 +7,20 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <style>
-    </style>
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
 </head>
 <body>
-    <form method="post">
-        <input asp-for="Username" class="form-control" />
-        <input asp-for="Password" class="form-control" />
-        <input asp-for="PasswordRepeat" class="form-control" />
-        <input asp-for="Email" class="form-control" />
-        <div><input type="submit" value="Create Account" class="btn" /></div>
-    </form>
+    <div style="display:flex;justify-content:center;align-items:center;">
+        <form method="post" style="width: 350px;">
+            <input asp-for="Username" class="form-control" style="width: 300px;" />
+            <span asp-validation-for="Username" style="width: 300px;"></span>
+            <input asp-for="Password" class="form-control" style="width: 300px;" />
+            <span asp-validation-for="Password" style="width: 300px;"></span>
+            <input asp-for="PasswordRepeat" class="form-control" style="width: 300px;" />
+            <span asp-validation-for="PasswordRepeat" style="width: 300px;"></span>
+            <input asp-for="Email" class="form-control" style="width: 300px;" />
+            <span asp-validation-for="Email" style="width: 300px;"></span>
+            <div><input type="submit" value="Create Account" class="btn" style="width: 300px;" /></div>
+        </form>
+    </div>
 </body>
 </html>

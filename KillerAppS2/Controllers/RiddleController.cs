@@ -32,6 +32,7 @@ namespace PresentationLayer.Controllers
         {
             if (ModelState.IsValid)
             {
+                riddleHandler.PostMessage(_rpm.Post);
                 return Redirect(Url.Action("Index", "Home"));
             }
             return Redirect(Url.Action("Index", "Home"));
