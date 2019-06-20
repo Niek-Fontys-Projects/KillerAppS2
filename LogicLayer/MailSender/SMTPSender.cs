@@ -14,6 +14,7 @@ namespace LogicLayer.MailSender
             fromAddress = _fromAddress;
             //remove for school host
             client.Credentials = new System.Net.NetworkCredential("riddleform.s27@gmail.com", "#Riddler2");
+            client.Port = 587;
             client.EnableSsl = true;
             //
             NewMail();
