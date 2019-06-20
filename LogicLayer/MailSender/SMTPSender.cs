@@ -12,10 +12,6 @@ namespace LogicLayer.MailSender
         {
             client = _client;
             fromAddress = _fromAddress;
-            //remove for school host
-            client.Credentials = new System.Net.NetworkCredential("riddleform.s27@gmail.com", "#Riddler2");
-            client.EnableSsl = true;
-            //
             NewMail();
         }
 
