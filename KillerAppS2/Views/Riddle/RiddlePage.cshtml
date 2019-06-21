@@ -23,52 +23,54 @@
             </div>
         }
     </div>
-    <div class="col-sm-10" style="border: 1px solid black; margin: 20px 20px 20px 20px; width: 600px;">
-        @foreach (var riddle in Model.Get.Riddles)
-        {
-        <div class="col-sm-10 row" style="border: 1px solid black; margin: 20px 20px 20px 20px;">
-            <a class="row" onclick="SetRiddleName('@riddle.RiddleName')">@riddle.RiddleName</a>
-            <a class="row">
-                @riddle.RiddleContent
-            </a>
+    <div class="col-sm-10" style="margin: 20px 20px 20px 20px; width: 600px;">
+        <div class="row col-sm-10" style="border: 1px solid black; width: 600px; margin: 5px 5px 5px 5px;">
+            @foreach (var riddle in Model.Get.Riddles)
+            {
+                <div class="col-sm-10 row" style="border: 1px solid black; margin: 10px 20px 10px 20px;">
+                    <a class="row" onclick="SetRiddleName('@riddle.RiddleName')">@riddle.RiddleName</a>
+                    <a class="row">
+                        @riddle.RiddleContent
+                    </a>
 
-            <div id="Answer @riddle.RiddleName" style="display:none;" class="answer_list row">@riddle.Answer</div>
-            <input type="button" name="answer" onclick="ShowDiv('Answer @riddle.RiddleName')" value="Show answer" />
-            <div class="row">
-                @foreach (var category in riddle.Categories)
-                {
-                    <a asp-controller="Riddle" asp-action="Category" asp-route-_categoryName="@category.CategoryName">@category.CategoryName</a>
-                }
-            </div>
-            <input class="row" type="button" name="answer" onclick="ShowDiv('Message @riddle.RiddleName')" value="Show messages" />
-            <div id="Message @riddle.RiddleName" style="display:none;" class="answer_list col-sm-10 row">
-                <div class="row">
-                    @foreach (var message in riddle.Messages)
-                    {
-                        <a class="row">@message.MessageContent</a>
-                        <a class="row">@message.User.UserName</a>
-                        <a class="row">@message.Time</a>
-                    }
+                    <div id="Answer @riddle.RiddleName" style="display:none;" class="answer_list row">@riddle.Answer</div>
+                    <input type="button" name="answer" onclick="ShowDiv('Answer @riddle.RiddleName')" value="Show answer" />
+                    <div class="row">
+                        @foreach (var category in riddle.Categories)
+                        {
+                            <a asp-controller="Riddle" asp-action="Category" asp-route-_categoryName="@category.CategoryName">@category.CategoryName</a>
+                        }
+                    </div>
+                    <input class="row" type="button" name="answer" onclick="ShowDiv('Message @riddle.RiddleName')" value="Show messages" />
+                    <div id="Message @riddle.RiddleName" style="display:none;" class="answer_list col-sm-10 row">
+                        <div class="row">
+                            @foreach (var message in riddle.Messages)
+                            {
+                                <a class="row">@message.MessageContent</a>
+                                <a class="row">@message.User.UserName</a>
+                                <a class="row">@message.Time</a>
+                            }
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
+        @using Microsoft.AspNetCore.Http;
+        @if (!String.IsNullOrEmpty(Context.Session.GetString("UserID")))
+        {
+            <div class="row col-sm-10" style="border: 1px solid black; width: 600px; margin: 5px 5px 5px 5px;">
+                <form method="post" asp-controller="Riddle" asp-action="PostMessage">
+                    <input asp-for="Post.UserID" value="@Context.Session.GetString("UserID")" type="hidden" />
+                    <input asp-for="Post.RiddleName" value="" id="riddleName" type="hidden" />
+                    <input asp-for="Post.Message" class="form-control" style="margin: 5px 5px 5px 5px;" />
+                    <span asp-validation-for="Post.Message"></span>
+                    <div><input type="submit" value="Send" class="btn" /></div>
+                    <span asp-validation-for="Post.UserID"></span>
+                    <span asp-validation-for="Post.RiddleName"></span>
+                </form>
+            </div>
         }
     </div>
-    @using Microsoft.AspNetCore.Http;
-    @if (!String.IsNullOrEmpty(Context.Session.GetString("UserID")))
-    {
-        <div style="display:flex;justify-content:center;align-items:center;">
-            <form method="post" asp-controller="Riddle" asp-action="PostMessage">
-                <input asp-for="Post.UserID" value="@Context.Session.GetString("UserID")" type="hidden" />
-                <input asp-for="Post.RiddleName" value="" id="riddleName" type="hidden" />
-                <input asp-for="Post.Message" class="form-control" />
-                <span asp-validation-for="Post.Message"></span>
-                <div><input type="submit" value="Send" class="btn" /></div>
-                <span asp-validation-for="Post.UserID"></span>
-                <span asp-validation-for="Post.RiddleName"></span>
-            </form>
-        </div>
-    }
 </body>
 </html>
 
